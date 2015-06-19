@@ -291,7 +291,7 @@ $query = mysqli_query($db, "SELECT com_id FROM projects WHERE group_id = '$group
              <!-- Popup Edit Date  -->
         <div class="modal fade" id="edit_date" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div class="modal-dialog">
-            <div class="modal-content">
+            <div class="modal-content content-date">
              <form method="post" action="">
               <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -570,6 +570,14 @@ $query = mysqli_query($db, "SELECT com_id FROM projects WHERE group_id = '$group
         $('#p-end-date').datepicker('setEndDate', null);
     });
     
+    $('body').on('change', '#p-start-date, #p-end-date', function(){
+      var endDate = new Date($('#p-end-date').val());
+      var startDate = new Date($('#p-start-date').val());
+      if (startDate > endDate) {
+        alert("Start date should not be greater than end date");
+        $('#p-start-date').val($('#p-end-date').val())
+      }
+    });
     /* Status update focus */
     $("#update").focus();
 
