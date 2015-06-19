@@ -1,0 +1,305 @@
+<style>
+     .search_auto{
+        border-radius: 0px;
+        padding: 5px 6px 5px 27px;
+        background: url("<?php echo $base_url.'wall_icons/wallicons.png'; ?>") no-repeat scroll -164px -213px ;
+        background-color:white;
+        text-indent: 20px;
+     }
+     #div-whole{
+         background: white;
+         width: 760px;
+         margin-left:auto;
+         margin-right:auto;
+     }
+     #div-whole input, #div-whole textarea{
+         width:300px;
+     }
+     #div-whole table tr td{
+         padding:10px;
+     }
+     .div-new-community{
+         //padding-left: 109px;
+     }
+     
+     .div-new-ngo{
+         padding-left: 80px;
+     }
+     
+     .div-new-ngo .text-right{
+         width:200px;
+     }
+             
+     .add_new_com , .add_new_ngo, #hide_new_com, #hide_new_ngo{
+         cursor: pointer;
+     }
+     .last-table{
+         float: left;
+         margin-left: 78px;
+     }
+     
+     #div-whole .btn-submit{
+         background-color:white;
+         border: 1px solid pink;
+         color: pink;
+         margin:50px;
+         
+     }
+     
+     .bootstrap-tagsinput{
+         width: 20em !important;
+     }
+     
+    div.div-new-community , div.div-new-ngo{
+        margin-left:73px;
+        border: 2px solid #a1a1a1;
+        border-radius: 25px;
+    }
+    hr{
+        margin: 0px;
+    }
+     
+     
+</style>
+
+<div id="div-whole" align="center">
+    <h3 class="text-center text-pink">Create a Page for Your <b>Project ! </b></h3><hr/>
+    <p class="text-center">List your project so that we can continue helping after you have left</p>
+
+    <label class="text-pink"><?php echo $error_info; ?></label>
+    <form method='post' action='' enctype="multipart/form-data">
+        <table>
+            <tr>
+                <td class="text-right"><label class="text-pink">*</label>What is Your Project's Name? </td>
+                <td><input type="text" name='proj_name' value='<?php echo $_POST['proj_name']; ?>' class="text-input" required="" placeholder="e.g. Project ABC"/><br>
+                    <label class="text-pink"><?php echo $error_info1; ?></label>
+                </td>
+            </tr>
+            <tr>
+                <td class="text-right">When is the Start Date?</td>
+                <td>
+                    <div class="input-append">
+                        <input class="date-picker" id="start-date" type="text" name='proj_start_date' value='<?php echo $_POST['proj_start_date']; ?>' placeholder="Your Project's Start Date"/>
+                        <label for="start-date" class="add-on"><i class="glyphicon glyphicon-calendar"></i></label>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class="text-right">When is the End Date?</td>
+                <td>
+                    <div class="input-append">
+                        <input class="date-picker" id="end-date" type="text" name='proj_end_date' value='<?php echo $_POST['proj_end_date']; ?>' placeholder="Your Project's End Date"/>
+                        <label for="end-date" class="add-on"><i class="glyphicon glyphicon-calendar"></i></label>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td valign='top' class="text-right"><label class="text-pink">*</label>What is the Community/Group were you working with?<br/>
+                    <span class="smalltext">Can't find?<i class="text-primary add_new_com"> Register here!</i></a></span></td>
+                <td>
+                    <input type="text" class="text-input search_auto" name='proj_community' id='proj_community' value='<?php echo $_POST['proj_community']; ?>' placeholder="e.g. Village ABC, NGO XYZ" onkeyup="autocomplet()" autocomplete="off"/>
+                    <br><label class="text-pink"><?php echo $error_info2; ?></label>
+                    <div id="proj_community_id" ></div>
+                
+                </td>
+            </tr>
+        </table>        
+        <!-- Community -->
+        <div class="div-new-community">
+            <table>
+                <tr>
+                    <td class="text-right" width="278px">New Community Name: </td>
+                    <td><input type='text' name='new_com_name' value='<?php echo $_POST['new_com_name']; ?>' placeholder="e.g. Village ABC, NGO XYZ" maxlength="50"/>
+                    </td>
+                </tr>
+                <tr valign='top'>
+                    <td class="text-right">Community Address: </td>
+                    <td><textarea name='new_com_add' class="textarea"><?php echo $_POST['new_com_add']; ?></textarea>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="text-right">Language(s) Spoken: </td>
+                    <td><input type='text' name='new_lang' value='<?php echo $_POST['new_lang']; ?>' placeholder="e.g. English, Chinese, Frrench..." maxlength="50">
+                    </td>
+                </tr>
+
+                <tr>
+                    <td colspan="2" class="text-right">
+                    <i class="text-primary">The community will be added to Care Posit's database upon verification.</i>
+                    <p id="hide_new_com" class="text-primary" style="text-decoration: underline;"> <b>Show less</b> </p>
+                </td>
+                </tr>
+            </table>
+            </div>
+            <!-- End Community -->
+            
+            <!-- Organization -->
+            <table style="margin-left: 120px;">
+            <tr>
+                <td valign='top' class="text-right">Are you part of the Organization?<br/><span class="smalltext">Can't find? <i class="text-primary add_new_ngo">Register here!</i></span></td>
+                <td>
+                    <input type="text" class="text-input search_auto" name='proj_org' id="proj_org" value='<?php echo $_POST['proj_org']; ?>' placeholder="e.g. National University of Singapore / YMCA" onkeyup="autocomplet_org()" autocomplete="off"/>
+                    <br><label class="text-pink"><?php echo $error_info3; ?></label>
+                    <div id="proj_org_id" ></div>
+              </td>
+            </tr>
+            </table>
+            <div class="div-new-ngo">
+                <table>
+                    <tr>
+                        <td class="text-right">New Organization Name: </td>
+                        <td><input type='text' name='new_org_name' value='<?php echo $_POST['new_org_name']; ?>' placeholder="e.g. National University of Singapore / YMCA" maxlength="50"/>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td valign='top' class="text-right">Organization Address: </td>
+                        <td><textarea name='new_org_add' class="textarea"><?php echo $_POST['new_org_add']; ?></textarea>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="text-right">Website: </td>
+                        <td><input type='url' name='new_org_web' value='<?php echo $_POST['new_org_web']; ?>' placeholder="Webiste of your organization" maxlength="50"/>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td colspan="2" class="text-right">
+                            <i class="text-primary">The Organization will be added to Care Posit's database upon verification.</i>
+                            <p id="hide_new_ngo" class="text-primary" style="text-decoration: underline;"> <b>Show less</b> </p>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+                    <!-- End Organization -->
+           
+                <table style="margin-left:50px;">
+                    <tr>
+                        <td class="text-right" width='300px'><label class="text-pink">*</label> Preferred URL<br/><label class="text-pink">*</label><span class="smalltext">You may change this later</span></td>
+                        <td>careps.com/proj/ <input type="text" name="proj_url" required="" placeholder="careposit" value='<?php echo $_POST['proj_url']; ?>'style="width:193px;"/>
+                        <br><label class="text-pink"><?php echo $error_info4; ?></label></td>
+                    </tr>
+                    <tr>
+                        <td class="text-right">Do you have your Project Documents?<br/><span class="smalltext">If yes, share them with us for faster registration</span></td>
+                        <td><input type="file" name="proj_file"/> <i>(pdf, doc & docx files only)</i><br>
+                        <label class="text-pink"><?php echo $error_info5; ?></label></td>
+                    </tr>
+                    <tr>
+                        <td class="text-right">Languages</td>
+                        <td><input type="text" name="proj_lang" class="languages" placeholder="eg. Chinese, English, Khmer..." value='<?php echo $_POST['proj_lang']; ?>'/> </td>
+                    </tr>
+                    <tr>
+                        <td class="text-right">Skills required</td>
+                        <td><input type="text" name="skills" class="skills" placeholder="eg. Teaching/Painting/Constrcuting..." value='<?php echo $_POST['skills']; ?>'/> </td>
+                    </tr>
+                    <tr>
+                        <td class="text-right">What is Your Role ?</td>
+                        <td><input type="text" name="usr_role" class="text-input" placeholder="eg. Team Leader/Mentor/Guide/Teacher..." value='<?php echo $_POST['usr_role']; ?>'/></td>
+                    </tr>
+                </table>
+           
+        <input type="hidden" name="proj_com_id" id="proj_com_id" value='<?php echo $_POST['proj_com_id']; ?>' />
+        <input type="hidden" name="proj_oid" id="proj_oid" value='<?php echo $_POST['proj_oid']; ?>' />
+        <input type="submit" value="show me my project !" class="btn btn-submit btn-sm"/>
+    </form>
+</div>
+<script type="text/javascript">
+    
+    $("input.languages").val();
+    $("input.languages").tagsinput('items');
+
+    $("input.skills").val();
+    $("input.skills").tagsinput('items');
+    
+    $("#start-date").datepicker({
+        format: 'yyyy-mm-dd',
+        autoclose: true,
+    }).on('changeDate', function (selected) {
+        var startDate = new Date(selected.date.valueOf());
+        $('#end-date').datepicker('setStartDate', startDate);
+    }).on('clearDate', function (selected) {
+        $('#end-date').datepicker('setStartDate', null);
+    });
+
+    $("#end-date").datepicker({
+        format: 'yyyy-mm-dd',
+        autoclose: true,
+    }).on('changeDate', function (selected) {
+        var endDate = new Date(selected.date.valueOf());
+        $('#start-date').datepicker('setEndDate', endDate);
+    }).on('clearDate', function (selected) {
+        $('#end-date').datepicker('setEndDate', null);
+    });
+    
+    
+    $(".div-new-community").hide();
+    $(".add_new_com").click(function(){
+       $('.div-new-community').slideToggle(1500);
+    });
+    $("#hide_new_com").click(function(){
+       $('.div-new-community').slideToggle(1500);
+    });
+    
+    $(".div-new-ngo").hide();
+    $(".add_new_ngo").click(function(){
+       $('.div-new-ngo').slideToggle(1500);
+    });
+    $("#hide_new_ngo").click(function(){
+       $('.div-new-ngo').slideToggle(1500);
+    });
+    
+    function autocomplet() {
+            var min_length = 0; // min caracters to display the autocomplete
+            var keyword = $('#proj_community').val();
+            if (keyword.length > min_length) {
+                    $.ajax({
+                            url: 'create_search_autocomplete.php',
+                            type: 'POST',
+                            data: {keyword:keyword},
+                            success:function(data){
+                                    $('#proj_community_id').show();
+                                    $('#proj_community_id').html(data);
+                            }
+                    });
+            } else {
+                    $('#proj_community_id').hide();
+            }
+    }
+
+    // set_item : this function will be executed when we select an item
+    function set_item(item1, item2) {
+            // change input value
+            $('#proj_community').val(item1);
+            $('#proj_com_id').val(item2);
+            // hide proposition list
+            $('#proj_community_id').hide();
+    }
+
+    function autocomplet_org() {
+            var min_length = 0; // min caracters to display the autocomplete
+            var keyword = $('#proj_org').val();
+            if (keyword.length > min_length) {
+                    $.ajax({
+                            url: 'create_search_autocomplete_org.php',
+                            type: 'POST',
+                            data: {keyword:keyword},
+                            success:function(data){
+                                    $('#proj_org_id').show();
+                                    $('#proj_org_id').html(data);
+                            }
+                    });
+            } else {
+                    $('#proj_org_id').hide();
+            }
+    }
+
+    function set_item_org(item1, item2){
+            // change input value
+            $('#proj_org').val(item1);
+            $('#proj_oid').val(item2);
+            // hide proposition list
+            $('#proj_org_id').hide();
+    }
+</script>

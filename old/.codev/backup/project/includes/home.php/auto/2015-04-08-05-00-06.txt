@@ -1,0 +1,514 @@
+<!-- Popup window -->
+<?php
+include 'popup_introduction.php';
+include 'popup_languages.php';
+include 'popup_proj_location.php';
+
+
+$query = mysqli_query($db, "SELECT com_id FROM projects WHERE group_id = '$groupID'");
+    foreach ($query as $value) {
+        $com_id = $value['com_id'];
+    }
+    $ben = mysqli_query($db, "SELECT * FROM community WHERE com_id = '$com_id'");
+    foreach ($ben as $data) {
+        $title          = $data['com_title'];
+        $img            = $data['com_img'];
+        $description    = $data['com_desc'];
+        $pro_sanitation = $data['sanitation'];
+        $accomodation   = $data['accomodation'];
+        $manpower       = $data['manpower'];
+        $recreation     = $data['recreation'];
+        $education      = $data['education'];
+        $donation       = $data['donation'];
+    }
+
+?>
+
+<div id="content-project" class="row home">
+    <div class="col-lg-8">
+       
+            <div class="text">
+                <p class="text-orange text-title">Introduction</p>
+                 <?php if (strlen($proj_intro) > 0) { 
+                            echo '<p>'.$proj_intro.'</p>';
+                        }else{
+                            echo "No update!";
+                        }
+                if ($group_owner_id == $uid) { ?>
+                <p class="text-right"><a href="" onclick="popup_window_show('#popup_window_1', {pos: 'window-left-top', parent: this, x: 50, y: 100, width: '400px'});
+                                return false;"><i class="glyphicon glyphicon-edit"></i> edit introduction</a></p><?php } ?>
+            </div>
+       
+        <div class="div-new-feed text row">
+            <p class="text-orange text-title">Announcements (<?php echo count($announcement); ?>)</p>
+            <p class="text-primary text-see-all"><a href="<?php echo $base_url; ?>group.php?gid=<?php echo $groupID; ?>&ptab=all_announcement">See All</a></p>
+
+            <?php
+            if ($announcement) {
+                ?>
+
+                <?php
+                $data = $Wall->get_latest_Announcement($group_id, $uid);
+                foreach ($data as $value) {
+					$mid = $value['msg_id'];
+                    $uploads = $value['uploads'];
+                    $message_text = $value['message'];
+                    $time = $value['created'];
+                    $mtime = date("d-m-Y", $time);
+
+                    if ($uploads) {
+                        $s = explode(",", $uploads);
+                        $i = 1;
+                        $f = count($s);
+                        foreach ($s as $a) {
+                            $newdata = $Wall->Get_Upload_Image_Id($a);
+                            if ($newdata) {
+                                $final_image = $base_url . $upload_path . $newdata['image_path'];
+                            }
+                            $i = $i + 1;
+                        }
+                    }
+                }
+                ?>
+                <div class="col-md-8 time-line">
+                <a href="<?php echo $base_url.'status/'.$mid; ?>">
+                    <div class="img-timeline">
+                        <?php if($final_image){ ?><img class="img-responsive" src="<?php echo $final_image; ?>" /><?php } ?>
+                    </div>
+                    <div class="div-opacity">
+                        <i class="text-primary"><?php echo substr($message_text, 0, 50); ?></i><br/>
+                        <?php echo $mtime; ?>
+                        <p class="text-comment">comment</p>
+                    </div>
+                 </a>
+                </div>
+
+                <?php
+                // get the latest announment.........
+                $data2 = $Wall->get_second_Announcement($group_id, $uid);
+                foreach ($data2 as $value2) {
+                	$mid2 = $value2['msg_id'];
+                    $uploads2 = $value2['uploads'];
+                    $title2 = $value2['message'];
+                    $time2 = $value2['created'];
+                    $mtime2 = date("d-m-Y", $time2);
+                }
+                if ($uploads2) {
+                    $s2 = explode(",", $uploads2);
+                    $i2 = 1;
+                    $f2 = count($s2);
+                    foreach ($s2 as $a2) {
+                        $newdata2 = $Wall->Get_Upload_Image_Id($a2);
+                        if ($newdata2) {
+                            $final_image2 = $base_url . $upload_path . $newdata2['image_path'];
+                        }
+                        $i = $i + 1;
+                    }
+                }
+                ?>
+                <div class="col-md-4">
+					
+                        <div class="time-line-small">
+                             <?php if($title2){ ?>
+                              <a href="<?php echo $base_url.'status/'.$mid2; ?>">
+                            <div class="img-timeline-small">
+                                <?php if($final_image2){ ?><img class="img-responsive" src="<?php echo $final_image2; ?>" /><?php } ?>
+                            </div>
+                            <div class="div-opacity">
+                                <i class="text-primary"><?php echo substr($title2, 0, 20); ?></i><br/>
+                                <?php echo $mtime2; ?>
+                                <p class="text-comment">comment</p>
+                            </div>
+                            </a>
+                            <?php } ?>
+                        </div>
+
+                        <?php
+                        
+                    
+                    // get the latest announment.........
+                    $data3 = $Wall->get_Third_Announcement($group_id, $uid);
+                    foreach ($data3 as $value3) {
+                    	$mid3 = $value3['msg_id'];
+                        $uploads3 = $value3['uploads'];
+                        $title3 = $value3['message'];
+                        $time3 = $value3['created'];
+                        $mtime3 = date("d-m-Y", $time3);
+                    }
+                    if ($uploads3) {
+                        $s3 = explode(",", $uploads3);
+                        $i3 = 1;
+                        $f3 = count($s3);
+                        foreach ($s3 as $a3) {
+                            $newdata3 = $Wall->Get_Upload_Image_Id($a3);
+                            if ($newdata3) {
+                                $final_image3 = $base_url . $upload_path . $newdata3['image_path'];
+                            }
+                            $i = $i + 1;
+                        }
+                    }
+                     ?>
+
+                        <div class="time-line-small">
+                            <?php if($title3){ ?>
+                             <a href="<?php echo $base_url.'status/'.$mid3; ?>">
+                            <div class="img-timeline-small">
+                                <?php if($final_image3){ ?><img class="img-responsive" src="<?php echo $final_image3; ?>" /><?php } ?>
+                            </div>
+                            <div class="div-opacity">
+                                <i class="text-primary"><?php echo substr($title3, 0, 20); ?></i><br/>
+                                <?php echo $mtime3; ?>
+                                <p class="text-comment">comment</p>
+                            </div>
+                            </a>
+                            <?php } ?>
+                        </div>
+                    </div>
+
+                    <?php
+                
+            } else {
+                echo "No Annoucenment Found!";
+            }
+            ?>
+
+            <?php if ($loginCheck) { ?>
+                <div class="col-md-12 text-right">
+                    <button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#add_anountment">new post</button>
+                </div>
+            <?php } ?>
+        </div>
+        <div class="col-lg-12 text">
+            <p class="text-orange text-title">team (<?php echo count($memberslist); ?>)</p>
+            <p class="text-primary text-see-all"><a href="<?php echo $base_url . 'group.php?gid=' . $groupID . '&ptab=team'; ?>">see all</a></p>
+            <div class="profile">
+                <?php
+                if ($memberslist) {
+                    $count = 1;
+                    foreach ($memberslist as $f) {
+                        $fid = $f['uid'];
+                        $fname = $f['username'];
+                        $friend_face = $Wall->User_Profilepic($fid, $base_url, $upload_path);
+                        echo '<a href="' . $base_url . 'other_dashboard.php?username=' . $fname . '" ><img src="' . $friend_face . '" original-title="' . $Wall->UserFullName($fname) . '" ></a>';
+
+                        if ($count++ == 8)
+                            break;
+                    }
+                }
+                ?>
+            </div>
+        </div>
+
+
+
+        <div class="col-lg-12 text">
+            <p class="text-orange text-title">project keywords</p>
+            <div class="list-keyword">
+                <ul class="">
+                    <li>
+                        <p>Language 
+                            <?php if ($group_owner_id == $uid) { ?>
+                                <span class="text-right"><a href="" onclick="popup_window_show('#popup_window_language', {pos: 'window-left-top', parent: this, x: 50, y: 100, width: '400px'});
+                            return false;"><i class="glyphicon glyphicon-edit"></i></a></span>
+                            <?php } ?></p>
+                        <?php $array_lang = explode(',', $proj_lang); ?>
+                        <p class="text-primary">
+                            <?php
+                            if ($array_lang) {
+                                $count = 1;
+                                foreach ($array_lang as $f) {
+                                    $p_lang = $f;
+
+                                    echo '<a href="" >' . $p_lang . '</a>';
+                                    if ($count < count($array_lang)) {
+                                        echo ", ";
+                                    }
+                                    if ($count++ == 5)
+                                        break;
+                                }
+                            }
+                            ?>
+
+                        </p>
+                    </li>
+                    <li>
+                        <p>Area of Focus</p>
+                        <p class="text-primary">
+                            <?php
+                            if ($area_of_focus) {
+                                $count = 1;
+                                foreach ($area_of_focus as $f) {
+                                    $focus_kw = $f['one_tag'];
+
+                                    echo '<a href="" >' . $focus_kw . '</a>';
+
+                                    if ($count++ == 5)
+                                        break;
+                                    if ($count == count($focus_kw))
+                                        break;
+                                    echo ", ";
+                                }
+                            }
+                            ?>
+                        </p>
+                    </li>
+                    <li>
+                        <p>Beneficary</p>
+                        <p class="text-primary"><a href="">Orphange</a>,<a href="">Orphan Care</a>,<a href="">Residentail</a>,<a href="">Children</a>,<a href="">Home</a></p>
+                    </li>
+                </ul>
+            </div>
+            <?php if ($loginCheck) { ?><p class="text-right"><a href=""><i class="glyphicon glyphicon-edit"></i> edit keywords</a></p><?php } ?>
+        </div>
+    </div>
+    <div class="col-lg-4">
+        <div class="text">
+            <p><i class="glyphicon glyphicon-calendar text-primary"></i><span> <?php echo $proj_start_date . ' ~ ' . $proj_end_date; ?></span></p>
+            <p>Project location in <?php echo $proj_location;
+            if ($loginCheck) {
+                ?>&nbsp;<a href="" data-toggle="modal" data-target="#edit_proj_location"><i class="glyphicon glyphicon-pencil text-primary"></i></a> <?php } ?> <br>community location in <?php echo $com_location; ?></p><br/>
+            <p class="text-primary">my messages</p>
+            <p>carenepal@gmail.com  <?php if ($loginCheck) { ?><a href=""><i class="glyphicon glyphicon-pencil text-primary"></i></a><?php } ?></p>
+
+        </div>
+        <div class="text">
+            <p class="text-orange text-title"><?php echo $title; ?></p>
+            <div>
+                <img class="img-responsive" src="<?php echo $base_url; ?>uploads/add_1412713429.png"/>
+            </div><br/>
+            <button class="btn btn-xs btn-orp">orphanage</button>
+            <table>
+                <tr>
+                    <td>Sanitation</td>
+                    <td class="td-progress-bar"> 
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo $pro_sanitation; ?>%;">
+                              <?php echo $pro_sanitation; ?>%
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Accomodation</td>
+                    <td class="td-progress-bar"> 
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo $accomodation; ?>%;">
+                              <?php echo $accomodation; ?>%
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Manpower</td>
+                    <td class="td-progress-bar"> 
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo $manpower; ?>%;">
+                              <?php echo $manpower; ?>%
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Recreation</td>
+                    <td class="td-progress-bar"> 
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo $recreation; ?>%;">
+                              <?php echo $recreation; ?>%
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Education</td>
+                    <td class="td-progress-bar"> 
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo $education; ?>%;">
+                              <?php echo $education; ?>%
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Donation</td>
+                    <td class="td-progress-bar"> 
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo $donation; ?>%;">
+                              <?php echo $donation; ?>%
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="text">
+            <p class="text-orange text-title">Organizations Affliated</p>
+            <div class="media">
+                <div class="media-left">
+                    <a href="#">
+                        <img width="55px" height="55px" class="media-object img-responsive" src="<?php echo $base_url; ?>uploads/user_91412737647.png" alt="">
+                    </a>
+                </div>
+                <div class="media-body">
+                    <?php if ($loginCheck) { ?>
+                        <a href=""><p class="text-right right-icon text-danger"><i class="glyphicon glyphicon-remove"></i></p></a>
+<?php } ?>
+                    Care Positioning Organization
+                </div>
+            </div>
+            <div class="media">media
+                <div class="media-left">
+                    <a href="#">
+                        <img width="55px" height="55px" class="media-object img-responsive" src="<?php echo $base_url; ?>uploads/user_61412736841.jpg" alt="">
+                    </a>
+                </div>
+                <div class="media-body">
+                    <?php if ($loginCheck) { ?>
+                        <a href=""><p class="text-right right-icon text-danger"><i class="glyphicon glyphicon-remove"></i></p></a>
+<?php } ?>
+                    Care Positioning Organization
+                </div>
+            </div>
+            <?php if ($loginCheck) { ?>
+                <p class="text-right"><a href=""><button class="btn btn-primary btn-xs">edit post</button></a></p>
+<?php } ?>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="add_anountment" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">New Announcement </h4>
+            </div>
+            <div class="modal-body">      
+                <?php
+                if ($_SESSION['uid'] == $uid || $home) {
+                    ?>
+                    <div id="updateboxarea" data-step="1" data-intro="You can upload status.">
+                        <b id="what">What's up <?php echo $Wall->UserFullName($session_username) . '?'; ?></b>
+                        <textarea name="update" id="update"  style="width:100%;"></textarea>
+                        <br />
+                        <div id="webcam_container" class='border'>
+                            <div id="webcam" >
+                            </div>
+                            <div id="webcam_preview">
+
+                            </div>
+
+                            <div id='webcam_status'></div>
+                            <div id='webcam_takesnap'>
+
+                                <input type="button" value=" Take Snap " onclick="return takeSnap();" class="camclick  wallbutton"/>
+                                <input type="hidden" id="webcam_count" />
+                            </div>
+                        </div>
+                        <div  id="imageupload" class="border">
+                            <form id="imageform" method="post" enctype="multipart/form-data" action='<?php echo $base_url; ?>message_image_ajax.php'>
+                                <div id='preview'>
+                                </div>
+                                <div id='imageloadstatus'>
+                                    <img src='<?php echo $base_url; ?>wall_icons/ajaxloader.gif'/> Uploading please wait ....
+                                </div>
+                                <div id='imageloadbutton'>
+                                    <span id='addphoto'>Add Photo:</span> <input type="file" name="photos[]" id="photoimg" multiple="true"/>
+                                </div>
+                                <input type='hidden' id='uploadvalues' />
+                                <input type='hidden' id='group_id' value="<?php echo $groupID; ?>" name="group_id"/>
+                            </form>
+                        </div>
+                        <div id="updateIcon">
+                            <span class="floatRight">
+                                <input type="submit"  value=" Update "  id="update_button"  class="update_button1 wallbutton update_box"/>
+                            </span>
+                            <a href="javascript:void(0);" id="camera" title="Upload Image"></a>
+                            <!--<a href="javascript:void(0);" id="webcam_button" title="Webcam Snap"></a>  -->
+                        </div>
+
+                    </div>
+
+                    <div id='flashmessage'>
+                        <div id="flash" align="left"  ></div>
+                    </div>
+
+                    <?php
+                }
+                ?>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script>
+
+                    /* Status update focus */
+                    $("#update").focus();
+
+                    /* Update Status */
+                    $(".update_button1").click(function()
+                    {
+                        var updateval = $("#update").val();
+                        var group_id = $("#group_id").val();
+                        var up = $("#uploadvalues").val();
+
+                        if (up)
+                        {
+                            var uploadvalues = $("#uploadvalues").val();
+                        }
+                        else
+                        {
+                            var uploadvalues = $(".preview:last").attr('id');
+                        }
+
+                        var X = $('.preview').attr('id');
+                        var Y = $('.webcam_preview').attr('id');
+                        if (X)
+                        {
+                            var Z = X + ',' + uploadvalues;
+                        }
+                        else if (Y)
+                        {
+                            var Z = uploadvalues;
+                        }
+                        else
+                        {
+                            var Z = 0;
+                        }
+                        var dataString = 'annountment=' + updateval + '&uploads=' + Z + '&group_id=' + group_id;
+                        if ($.trim(updateval).length == 0)
+                        {
+                            alert("Please Enter Some Text");
+                        }
+                        else
+                        {
+                            $("#flash").show();
+                            $("#flash").fadeIn(400).html('Loading Update...');
+                            $.ajax({
+                                type: "POST",
+                                url: $.base_url + "message_ajax.php",
+                                data: dataString,
+                                cache: false,
+                                success: function(html)
+                                {
+                                    location.reload();
+                                    $("#webcam_container").slideUp('fast');
+                                    $("#flash").fadeOut('slow');
+                                    $("#content").prepend(html);
+                                    $("#update").val('').focus().css("height", "40px");
+                                    $('#preview').html('');
+                                    $('#webcam_preview').html('');
+                                    $('#uploadvalues').val('');
+                                    $('#photoimg').val('');
+                                    var c = $('#update_count').html();
+                                    $('#update_count').html(parseInt(c) + 1);
+                                }
+                            });
+                            $("#preview").html();
+                            $('#imageupload').slideUp('fast');
+                        }
+                        return false;
+                    });
+</script>

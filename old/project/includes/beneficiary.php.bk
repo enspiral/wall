@@ -1,0 +1,320 @@
+<style>
+    .beneficiary .glyphicon{
+        display: inline;
+    }
+    
+    .beneficiary .edit-progress{
+        padding-left: 20px;
+    }
+</style>
+
+<?php
+    $query = mysqli_query($db, "SELECT com_id FROM projects WHERE group_id = '$groupID'");
+    foreach ($query as $value) {
+        $com_id = $value['com_id'];
+    }
+    $ben = mysqli_query($db, "SELECT * FROM community WHERE com_id = '$com_id'");
+    foreach ($ben as $data) {
+        $title          = $data['com_title'];
+        $img            = $data['com_img'];
+        $description    = $data['com_desc'];
+        $pro_sanitation = $data['sanitation'];
+        $accomodation   = $data['accomodation'];
+        $manpower       = $data['manpower'];
+        $recreation     = $data['recreation'];
+        $education      = $data['education'];
+        $donation       = $data['donation'];
+    }
+?>
+<div class=" text beneficiary">
+    <p class="text-orange text-title">Beneficiary</p><hr style="margin-top:-5px; margin-bottom:10px;">
+    <div class="row">
+        <div class="col-lg-6 block-left">
+            <h4 class="text-orange"><?php echo $title; ?></h4>
+            <img src="<?php echo $base_url; ?>uploads/bggroup_141424752856.jpg"/>
+        </div>
+        <div class="col-lg-6 block-right">
+            <p class="text-see-all"><i class="glyphicon glyphicon-pencil custom-file-input" original-title="edit beneficiary" data-toggle="modal" data-target="#modal_beneficiary"></i></p>
+            <p><?php echo $description; ?></p>
+            <table>
+                <tr>
+                    <td>Sanitation</td>
+                    <td class="td-progress-bar"> 
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo $pro_sanitation; ?>%;">
+                              <?php echo $pro_sanitation; ?>%
+                            </div>
+                        </div>
+                        
+                    </td>
+                    <td class="edit-progress"><i id="edit_sanitation" class="edit_progress glyphicon glyphicon-pencil custom-file-input" original-title="edit Sanitation" data-toggle="modal" data-target="#modal_edit_pro"></i></td>
+                    <div class="modal fade" id="modal_edit_pro" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <h4 class="modal-title" id="exampleModalLabel">Edit Progressing Bar</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="input-group div-input" id="div_edit_sanitation">
+                                        <input type="text" class="form-control" name="sanitation" id="sanitation" value="<?php echo $pro_sanitation; ?>">
+                                        <span class="input-group-addon" id="basic-addon2">%</span>
+                                    </div>
+                    
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">Cancel</button>
+                                    <button id="submit_progress" name="save" class="btn btn-sm btn-primary update-progress">Update</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </tr>
+                <tr>
+                    <td>Accomodation</td>
+                    <td class="td-progress-bar"> 
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo $accomodation; ?>%;">
+                              <?php echo $accomodation; ?>%
+                            </div>
+                        </div>
+                    </td>
+                    <td class="edit-progress"><i id="edit_accomodation"  class="edit_progress glyphicon glyphicon-pencil custom-file-input" original-title="edit accomodation" data-toggle="modal" data-target="#div_edit_accomodation"></i></td>
+                    <div class="modal fade" id="div_edit_accomodation" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <h4 class="modal-title" id="exampleModalLabel">Edit Accomodation</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="input-group div-input" id="">
+                                        <input type="text" class="form-control" name="accomodation" id="accomodation" value="<?php echo $accomodation; ?>">
+                                        <span class="input-group-addon" id="basic-addon2">%</span>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">Cancel</button>
+                                    <button id="submit_progress" name="save" class="btn btn-sm btn-primary update-progress">Update</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </tr>
+                <tr>
+                    <td>Manpower</td>
+                    <td class="td-progress-bar"> 
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo $manpower; ?>%;">
+                              <?php echo $manpower; ?>%
+                            </div>
+                        </div>
+                    </td>
+                    <td class="edit-progress"><i  id="edit_manpower"  class="edit_progress glyphicon glyphicon-pencil custom-file-input" original-title="edit manpower" data-toggle="modal" data-target="#div_edit_manpower"></i></td>
+                    <div class="modal fade" id="div_edit_manpower" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <h4 class="modal-title" id="exampleModalLabel">Edit Manpower</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="input-group div-input" id="">
+                                        <input type="text" class="form-control" name="manpower" id="manpower" value="<?php echo $manpower; ?>">
+                                        <span class="input-group-addon" id="basic-addon2">%</span>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">Cancel</button>
+                                    <button id="submit_progress" name="save" class="btn btn-sm btn-primary update-progress">Update</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </tr>
+                <tr>
+                    <td>Recreation</td>
+                    <td class="td-progress-bar"> 
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo $recreation; ?>%;">
+                              <?php echo $recreation; ?>%
+                            </div>
+                        </div>
+                    </td>
+                    <td class="edit-progress"><i id="edit_recreation" class="edit_progress glyphicon glyphicon-pencil custom-file-input" original-title="edit recreation" data-toggle="modal" data-target="#div_edit_recreation"></i></td>
+                    <div class="modal fade" id="div_edit_recreation" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <h4 class="modal-title" id="exampleModalLabel">Edit Recreation</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="input-group div-input" id="">
+                                        <input type="text" class="form-control" name="recreation" id="recreation" value="<?php echo $recreation; ?>">
+                                        <span class="input-group-addon" id="basic-addon2">%</span>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">Cancel</button>
+                                    <button id="submit_progress" name="save" class="btn btn-sm btn-primary update-progress">Update</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                
+                </tr>
+                <tr>
+                    <td>Education</td>
+                    <td class="td-progress-bar"> 
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo $education; ?>%;">
+                              <?php echo $education; ?>%
+                            </div>
+                        </div>
+                    </td>
+                    <td class="edit-progress"><i id="edit_education"  class=" edit_progress glyphicon glyphicon-pencil custom-file-input" original-title="edit education" data-toggle="modal" data-target="#div_edit_education"></i></td>
+                    <div class="modal fade" id="div_edit_education" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <h4 class="modal-title" id="exampleModalLabel">Edit Education</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="input-group div-input" id="">
+                                        <input type="text" class="form-control" name="education" id="education" value="<?php echo $education; ?>">
+                                        <span class="input-group-addon" id="basic-addon2">%</span>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">Cancel</button>
+                                    <button id="submit_progress" name="save" class="btn btn-sm btn-primary update-progress">Update</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </tr>
+                <tr>
+                    <td>Donation</td>
+                    <td class="td-progress-bar"> 
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo $donation; ?>%;">
+                              <?php echo $donation; ?>%
+                            </div>
+                        </div>
+                    </td>
+                    <td class="edit-progress"><i id="edit_donation"  class="edit_progress glyphicon glyphicon-pencil custom-file-input" original-title="edit donation" data-toggle="modal" data-target="#div_edit_donation"></i></td>
+                    <div class="modal fade" id="div_edit_donation" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <h4 class="modal-title" id="exampleModalLabel">Edit Donation</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="input-group div-input" id="">
+                                        <input type="text" class="form-control" name="donation" id="donation" value="<?php echo $donation; ?>">
+                                        <span class="input-group-addon" id="basic-addon2">%</span>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">Cancel</button>
+                                    <button id="submit_progress" name="save" class="btn btn-sm btn-primary update-progress">Update</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </tr>
+            </table>
+            <button class="btn btn-primary btn-xs btn-visit">visit page</button>
+        </div>
+    </div><br/><br/>
+    <div class="map">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d250236.5367425079!2d104.775517!3d11.483829!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3109513dc76a6be3%3A0x9c010ee85ab525bb!2sPhnom+Penh%2C+Cambodia!5e0!3m2!1sen!2sus!4v1425021647406" width="718" height="450" frameborder="0" style="border:0"></iframe>
+    </div>
+</div>
+
+
+<div class="modal fade" id="modal_beneficiary" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">Edit Beneficiary</h4>
+            </div>
+            <div class="modal-body">
+                <input type="text" id="beneficiary_title" name='beneficiary' class="form-control form-taginput" data-role="tagsinput"  value="<?php echo $title; ?>" required=""/><br/>
+                <input type="file" id="beneficiary_img" name="" value="<?php echo $beneficiary_img; ?>"/><br/>
+                <textarea id="beneficiary_des" name="p1_intro" style="width:100%; height:150px;"><?php echo $description; ?></textarea>
+                
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">Cancel</button>
+                <button id="submit_beneficiary" name="save" class="btn btn-sm btn-primary update-profile">Update</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+    });
+    
+    $('#submit_beneficiary').click(function(){
+        var beneficiary_title   = $('#beneficiary_title').val();
+        var beneficiary_img     = $('#beneficiary_img').val();
+        var beneficiary_des     = $('#beneficiary_des').val();
+        $.ajax({
+            type:'POST',
+            url:'<?php echo $base_url; ?>project/ajax-project.php',
+            data:{
+               beneficiary_title    :beneficiary_title,
+               beneficiary_img      :beneficiary_img,
+               beneficiary_des      :beneficiary_des,
+               com_id               : "<?php echo $com_id; ?>",
+               submit_name            :'edit_beneficiary',
+            },
+            success:function(data){
+                location.reload();
+            },error:function(data){
+                alert(data);
+            }
+        });
+    });
+    
+    
+   
+    
+   $('.update-progress').click(function(){
+      var sanitation    = $('#sanitation').val(); 
+      var accomodation  = $('#accomodation').val(); 
+      var manpower      = $('#manpower').val(); 
+      var recreation    = $('#recreation').val(); 
+      var education     = $('#education').val(); 
+      var donation      = $('#donation').val();
+      $.ajax({
+            type:'POST',
+            data:{
+               sanitation       :sanitation,
+               accomodation     :accomodation,
+               manpower         :manpower,
+               recreation       :recreation,
+               education        :education,
+               donation         :donation,
+               post_name        :'edit_progress',
+               comid            :'<?php echo $com_id; ?>',
+            },
+            url:'<?php echo $base_url; ?>project/ajax-project.php',
+            success:function(data){
+                location.reload();
+            },error:function(data){
+                //alert(data);
+            }
+        });
+      
+      
+   });
+</script>

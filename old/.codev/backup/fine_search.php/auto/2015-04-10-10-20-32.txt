@@ -1,0 +1,207 @@
+
+<div class="row bg-search-header">
+	<h3 class="search-text">I want to fine a sustainable volunteerning oppportunity</h3>
+	<div class="col-lg-1"></div>
+	<div class="col-lg-10 seach-header"><span class="search-color-text"><br/><b>Search by:</b>Plase Duration. Time period. Area of focus Skills, Requried Language. Project name. Team name. Organization name....</span><br/><br/>
+		<form>
+  				<div class="form-group">
+  				  <input type="email" class="form-control input-search" id="exampleInputEmail1" placeholder="Enter email">
+  				</div>
+
+		<div class="row">
+			<div class="col-lg-3"></div>
+			<div class="col-lg-3"> 
+				<div class="form-group">
+					<label class="search-text"> Start Date: </label>  
+	                <div class='input-group date' id='datetimepicker1'>
+	                    <input type='text' class="form-control input-search" />
+	                    <span class="input-group-addon">
+	                        <span class="glyphicon glyphicon-calendar"></span>
+	                    </span>
+	                </div>
+               </div>
+
+           </div>
+			<div class="col-lg-3">
+					<div class="form-group">
+						<label class="search-text"> End Date: </label> 
+	                <div class='input-group date' id='datetimepicker1'>
+	                    <input type='text' class="form-control input-search" />
+	                    <span class="input-group-addon">
+	                        <span class="glyphicon glyphicon-calendar"></span>
+	                    </span>
+	                </div>
+               </div>
+
+			</div>
+			<div class="col-lg-3"></div>
+		</div>
+			  <div class="row serach-checkbox">
+			<div class="form-group">   
+		     	<label class="checkbox search-text">
+                    <input type="checkbox" value="remember-me">Remember Me
+               </label>         
+    			
+			</div></div>
+			<div class="row serach-checkbox">
+				<div class="form-group">
+    			<button type="submit" class="btn btn-default">Search</button>
+			</div>
+		</form>
+	<div class="col-lg-1"></div>
+</div> <!-- head -->
+</div>
+</div>
+<div class="row">
+	<h2 class="search-texth2">Can't think of what do search?</h2>
+	<div class="search-texth2" id="link"><img src="images/search/icon-slide.png"/></div>
+	</div>
+</div>
+<div class"row search-content" id="test">
+	<h3 class="search-texth3">Villages & Beneficiaries</h3>
+	<p class="search-color-text-one">You com onec, but we keep the projects keepings going on untill social impacts have been reached.</p>
+	<hr class="hr-search">
+		<div class="image-search-slid">
+				<!-- start code -->
+					<!-- <div class="col-md-12 text-center"><h3>Product Carousel</h3></div> -->
+<div class="col-md-6 col-md-offset-3 search-image-iteam">
+<div class="carousel slide" data-ride="carousel" data-type="multi" data-interval="3000" id="myCarousel">
+  <div class="carousel-inner">
+    <div class="item active">
+      <div class="col-md-3 col-sm-6 col-xs-12"><img src="images/search/img-002.jpg" width="280" height="280"/><p class="keyword">Key word 1</p></div>
+    </div>
+    <div class="item">
+      <div class="col-md-3 col-sm-6 col-xs-12"><img src="images/search/img-003.jpg" width="280" height="280"/><p class="keyword">Key word 1</p></div>
+    </div>
+    <div class="item">
+      <div class="col-md-3 col-sm-6 col-xs-12"><img src="images/search/img-004.jpg" width="280" height="280"/><p class="keyword">Key word 1</p></div>
+    </div>
+    <div class="item">
+      <div class="col-md-3 col-sm-6 col-xs-12"><img src="images/search/img-005.jpg" width="280" height="280"/><p class="keyword">Key word 1</p></div>
+    </div>
+    <div class="item">
+      <div class="col-md-3 col-sm-6 col-xs-12"><a href="#"><img src="http://placehold.it/500/f566f5/333&amp;text=5" class="img-responsive"></a></div>
+    </div>
+    <div class="item">
+      <div class="col-md-3 col-sm-6 col-xs-12"><a href="#"><img src="http://placehold.it/500/f477f4/fff&amp;text=6" class="img-responsive"></a></div>
+    </div>
+    <div class="item">
+      <div class="col-md-3 col-sm-6 col-xs-12"><a href="#"><img src="http://placehold.it/500/eeeeee&amp;text=7" class="img-responsive"></a></div>
+    </div>
+    <div class="item">
+      <div class="col-md-3 col-sm-6 col-xs-12"><a href="#"><img src="http://placehold.it/500/fcfcfc/333&amp;text=8" class="img-responsive"></a></div>
+    </div>
+  </div>
+  <a class="left carousel-control" href="#myCarousel" data-slide="prev"><i class="glyphicon glyphicon-chevron-left"></i></a>
+  <a class="right carousel-control" href="#myCarousel" data-slide="next"><i class="glyphicon glyphicon-chevron-right"></i></a>
+</div>
+</div>
+				<!-- end code -->
+	</div>
+	<div class="search-benficaties"><button class="btn" >See more Benficaties</button></div>
+	<h3 class="search-texth3">Villages & Beneficiaries</h3>
+	<p class="search-color-text-one">You com onec, but we keep the projects keepings going on untill social impacts have been reached.</p>
+<hr class="hr-search">
+
+<!-- <div class="search-image-iteam">
+	<div class="image-search-slid">
+	<div class="col-lg-4"><img src="images/search/advertiment.jpg"/></div>
+	<div class="col-lg-4"><img src="images/search/advertiment.jpg"/></div>
+	<div class="col-lg-4"><img src="images/search/advertiment.jpg"/></div>
+	<div class="col-lg-4 none-image">image one</div>
+	<div class="col-lg-4 none-image">image one</div>
+	<div class="col-lg-4 none-image">image one</div>
+</div> -->
+<!-- </div> -->
+<div class="image-search-slid">
+<div class="row">
+
+	<div class="col-lg-4 none-image"><img src="images/search/img-002.jpg"/><p class="keyword">Key word 1</p></div>
+	<div class="col-lg-4 none-image"><img src="images/search/img-003.jpg"/><p class="keyword">Key word 2</p></div>
+	<div class="col-lg-4 none-image"><img src="images/search/img-004.jpg"/><p class="keyword">Key word 3</p></div>
+</div>
+</div>
+<br/>
+<div class="image-search-slid">
+<div class="row">
+	<div class="col-lg-8 image-full-width"><img src="images/search/img-001.jpg"/><p class="keyword">Key word 1</p></div>
+	<div class="col-lg-4 none-image"><img src="images/search/img-004.jpg"/><p class="keyword">Key word 3</p></div>
+</div>
+</div>
+	<div class="row">
+	<h3 class="search-texth3">Ours Community</h3>
+	<p class="search-color-text-one">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+<hr class="hr-search">
+<div class="image-search-slid">
+<!-- start code -->
+					<!-- <div class="col-md-12 text-center"><h3>Product Carousel</h3></div> -->
+<div class="col-md-6 col-md-offset-3 search-image-iteam">
+<div class="carousel slide" data-ride="carousel" data-type="multi" data-interval="3000" id="myCarousel">
+  <div class="carousel-inner">
+    <div class="item active">
+      <div class="col-md-3 col-sm-6 col-xs-12"><img src="images/search/img-002.jpg" width="280" height="280"/><p class="keyword">Key word 1</p></div>
+    </div>
+    <div class="item">
+      <div class="col-md-3 col-sm-6 col-xs-12"><img src="images/search/img-003.jpg" width="280" height="280"/><p class="keyword">Key word 1</p></div>
+    </div>
+    <div class="item">
+      <div class="col-md-3 col-sm-6 col-xs-12"><img src="images/search/img-004.jpg" width="280" height="280"/><p class="keyword">Key word 1</p></div>
+    </div>
+    <div class="item">
+      <div class="col-md-3 col-sm-6 col-xs-12"><img src="images/search/img-005.jpg" width="280" height="280"/><p class="keyword">Key word 1</p></div>
+    </div>
+    <div class="item">
+      <div class="col-md-3 col-sm-6 col-xs-12"><a href="#"><img src="http://placehold.it/500/f566f5/333&amp;text=5" class="img-responsive"></a></div>
+    </div>
+    <div class="item">
+      <div class="col-md-3 col-sm-6 col-xs-12"><a href="#"><img src="http://placehold.it/500/f477f4/fff&amp;text=6" class="img-responsive"></a></div>
+    </div>
+    <div class="item">
+      <div class="col-md-3 col-sm-6 col-xs-12"><a href="#"><img src="http://placehold.it/500/eeeeee&amp;text=7" class="img-responsive"></a></div>
+    </div>
+    <div class="item">
+      <div class="col-md-3 col-sm-6 col-xs-12"><a href="#"><img src="http://placehold.it/500/fcfcfc/333&amp;text=8" class="img-responsive"></a></div>
+    </div>
+  </div>
+  <a class="left carousel-control" href="#myCarousel" data-slide="prev"><i class="glyphicon glyphicon-chevron-left"></i></a>
+  <a class="right carousel-control" href="#myCarousel" data-slide="next"><i class="glyphicon glyphicon-chevron-right"></i></a>
+</div>
+</div>
+				<!-- end code -->
+</div>
+</div>
+
+
+<script type="text/javascript">
+            $(function () {
+                $('#datetimepicker2').datetimepicker({
+                    locale: 'ru'
+                });
+            });
+
+            $("#link").css("cursor","pointer");
+            $("#link").click(function() {
+			   $('html,body').animate({
+			       scrollTop: $("#test").offset().top},
+			       'slow');
+			});
+        </script>
+        <script type="text/javascript">
+
+   $('.carousel[data-type="multi"] .item').each(function(){
+  var next = $(this).next();
+  if (!next.length) {
+    next = $(this).siblings(':first');
+  }
+  next.children(':first-child').clone().appendTo($(this));
+  
+  for (var i=0;i<2;i++) {
+    next=next.next();
+    if (!next.length) {
+    	next = $(this).siblings(':first');
+  	}
+    
+    next.children(':first-child').clone().appendTo($(this));
+  }
+});
+        </script>

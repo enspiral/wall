@@ -1,0 +1,464 @@
+<!--<div>
+    <div class="col-lg-3 sidebar-left">
+<?php //include_once 'block_left_dashboard.php'; ?>
+    </div>
+    <div class="col-lg-6 middle-content">
+         <div class="text-center discover">
+            <form>
+                <span>It seems awfully quiet here....</span><br/>
+                <span>Why not liven things up, &</span>
+                <input type="submit" name="search" value="search" id="discover-search" class="btn btn-default btn-xs"/> or
+                <input type="submit" name="discover" value="discover" id="btn-discover" class="btn btn-default btn-xs"/><br/>
+                <span>communities, organizations, projects and volunteers to <i class="text-pink">follow</i>?</span>
+            </form>
+        </div>
+        <div id="recommendation">
+            <p>Recommendations </p>
+        </div>
+    </div>
+    <div class="col-lg-3 sidebar-right">
+<?php //include_once 'block_right.php'; ?>
+    </div>
+    </div>-->
+
+<style>
+    div.discover-left-sidebar {
+        border: 2px solid;
+        border-color: grey;
+        padding: 10px 10px;
+        margin-right:5px;
+        margin-bottom:20px;
+    }
+
+    input[type="checkbox"]{
+        margin-right: 10px;
+    }
+
+    .content-discover-project img {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        background-color: green;
+    }
+
+    div.content-discover-project {
+        border-radius: 5px;
+        padding:20px;
+        margin-bottom:20px;
+        background-color: white;
+        box-shadow:0px 0px 10px #888888;
+    }
+    /*.tab.....*/
+    
+    .div-tab{
+        background-color: #EAEF9F;
+        padding-top: 10px;
+        padding-right: 10px;
+    }
+    .div-tab ul li a{
+        padding:10px;
+    }
+    .div-tab ul .title-tab{
+        padding:10px;
+    }
+    
+    .div-tab .nav-tabs > li.active > a, .div-tab .nav-tabs > li.active > a:hover,.div-tab  .nav-tabs > li.active > a:focus{
+        background-color: #F8FCBF;
+        border-radius: 0px;
+    }
+    
+    .tab-content .btn-share, .tab-content .btn-follow{
+        border:2px solid pink;
+        color: pink;
+        font-weight: bold;
+        float:right;
+        margin-left: 10px;
+    }
+    .btn-invole{
+        border:2px solid pink;
+        color: pink;
+        font-weight: bold;
+    }
+    
+    .tab-content .media-body{
+        width:100%;
+    }
+    
+  
+</style>
+<div class="row">
+    <form method='post' action='' enctype="multipart/form-data">
+        <div class="col-lg-12" style="background-color: lightgrey; padding: 20px 10px; margin-bottom:10px;">
+
+            <table width="80%" class="table-form">
+                <tr>
+                    <td width="20%">
+                        <select class="form-control">
+                            <option value="">All Type</option>
+                        </select>
+                    </td>
+                    <td width="30%"><input class="form-control" type="text" name="search_name" placeholder="What?" value="<?php echo $_POST['search_name']; ?>"></td>
+                    <td width="40%"><input class="form-control" type="text" name="search_location" placeholder="Location" value="<?php echo $_POST['search_location']; ?>"></td>
+<!--                    <td width="40%">
+                        <select class="form-control" name="search_location">
+                            <option value="<?php echo $_POST['search_location']?$_POST['search_location']:''; ?>"><?php echo $_POST['search_location']?$_POST['search_location']:''; ?></option>
+                            <?php foreach ($loc as $value_location) { ?>
+                            <option value="<?php echo $value_location['location']; ?>"><?php echo $value_location['location']; ?></option>
+                            <?php } ?>
+                        </select>
+                    </td>-->
+                    <td width="10%"> <input class="btn btn-default" type="submit" value="Discover" name = "top_search" class="btn btn-submit"/></td>
+                </tr>
+                <tr>
+                    <td><i>Type (eg. jobs or events)</i></td>
+                    <td><i>Keywords (eg. names, interests, or skills)</i></td>
+                    <td><i>Location (eg. community, village, district, province)</i></td>
+                    <td><i>Advanced</i></td>
+                </tr>
+            </table>
+            <!-- <form>-->
+        </div>
+
+        <div class="col-lg-3">
+            <div class="discover-left-sidebar">
+
+                <h3 style="pink">Location</h3>
+                <p>Distance from Phnom Penh</p><br>
+                <select><option value="">Exact location only</option></select><br>
+                <p>Remote (e.g. work from home or local)<br>
+                    <input type="radio" name="result" value="all">All results, including remote<br>
+                    <input type="radio" name="result" value="local">Local results only<br>
+                    <input type="radio" name="result" value="remote">Remote results only (Worldwide)<br>
+
+            </div>
+
+            <div class="discover-left-sidebar">
+                <?php
+                $all_area_focus = $Wall->Get_Social_Needs_keywords();
+                $count_all = $Wall->Count_Social_Needs_keywords();
+                ?>
+
+                <h3 style="pink">Area of focus</h3>
+                <input type=checkbox name="">All<?php echo '('. $count_all .')'; ?><br>
+                <div id="dynamicAreaFocus">
+                    <?php
+                    if ($all_area_focus) {
+                        $count = 1;
+                        $i = 0;
+                        foreach ($all_area_focus as $f) {
+                            $focus_kw = $f['one_tag'];
+                            $focus_count = $f['cnt'];
+                            //     if((strcmp($focus_kw, $_POST['area_focus'][$i])==0) && $i<sizeof($_POST['area_focus'])){
+                            if (in_array($focus_kw, $_POST['area_focus'])) {
+
+                                $check = 'checked = "checked"';
+                                $i++;
+                            } else {
+                                $check = "";
+                            }
+                            $count++;
+                            if ($count <= 4) {
+                                echo '<input type=checkbox name="area_focus[]" ' . $check . ' value="' . $focus_kw . '">' . $focus_kw . '(' . $focus_count . ')<br>';
+                            } else {
+                                if (!empty($_POST['area_focus'])) {
+                                    if ($check != "") {
+                                        echo '<input type=checkbox name="area_focus[]" ' . $check . ' value="' . $focus_kw . '">' . $focus_kw . '(' . $focus_count . ')<br>';
+                                    }
+                                } else {
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                    ?> 
+                </div>
+
+                <input type="text" class="text-input search_auto" name='search_area_focus' id='search_area_focus' placeholder="Search" onkeyup="autocomplete_area_focus()" autocomplete="off"/>
+                <div id="search_area_focus_id">
+
+                </div>
+            </div>
+
+            <div class="discover-left-sidebar">
+                <?php
+                $all_lang = $Wall->Get_Project_Langauges();
+                $count_lang = $Wall->Count_Project_Languages();
+                ?>
+
+                <h3 style="pink">Languages</h3>
+                <input type=checkbox name="">All<?php echo '(' . $count_lang . ')'; ?><br>
+                <div id="dynamicLanguage" >
+                    <?php
+                    if ($all_lang) {
+                        $count = 1;
+                        //        $i = 0;
+                        foreach ($all_lang as $f) {
+                            $count++;
+                            $each_lang = $f['one_tag'];
+                            $one_lang = $f['cnt'];
+                            if (in_array($each_lang, $_POST['language'])) {
+                                $check = 'checked = "checked"';
+                                //        $i++;
+                            } else {
+                                $check = "";
+                            }
+
+                            if ($count <= 4) {
+                                echo '<input type=checkbox name="language[]" ' . $check . ' value="' . $each_lang . '">' . $each_lang . '(' . $one_lang . ')<br>';
+                            } else {
+                                if ($check != "") {
+                                    echo '<input type=checkbox name="language[]" ' . $check . ' value="' . $each_lang . '">' . $each_lang . '(' . $one_lang . ')<br>';
+                                }
+                            }
+                        }
+                    }
+                    ?> 
+                </div>
+
+                <input type="text" class="text-input search_auto" name='search_language' id='search_language' placeholder="Search" onkeyup="autocomplete_language()" autocomplete="off"/>
+                <div id="search_language_id">
+
+                </div>
+            </div>
+
+
+
+            <div class="discover-left-sidebar">
+                <h3 style="pink">Skills required</h3>
+                <input type=checkbox name="">IT (Information Technology)<br>
+                <input type=checkbox name="">Doctor<br>
+                <input type=checkbox name="">Agriculture<br>     
+            </div>
+
+            <div class="discover-left-sidebar">
+                <h3 style="pink">Time Commitment</h3>
+                <?php $all_date = $Wall->Get_All_Project_Dates(); ?>
+                <?php
+                if ($all_date) {
+                    $count = 1;
+                    foreach ($all_date as $f) {
+                        $each_date = $f['end_date'];
+                        $count_date = $f['total'];
+
+                        echo '<input type=checkbox name="">' . $each_date . '(' . $count_date . ')<br>';
+
+                        if ($count++ == 5)
+                            break;
+                    }
+                }
+                ?>    
+            </div>
+
+            <div class="discover-left-sidebar">
+                <h3 style="pink">Organization Adopted</h3>
+                <input type=checkbox name="">ABC<br>
+                <input type=checkbox name="">DDD<br>
+                <input type=checkbox name="">KKK<br>      
+            </div>
+            <input type="submit" value="Search" name="left_search" class="btn btn-submit"/>
+
+        </div>
+    </form>
+
+     
+    <div class="col-lg-9">
+        <div class="container div-tab">
+            <ul class="nav nav-tabs pull-right" role="tablist" id="myTab">
+                <li class="title-tab">View by :</li>
+                <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Volunteering Opportunities</a></li>
+                <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Projects and Teams</a></li>
+            </ul> 
+        </div><br/><br/>
+            <div class="tab-content">
+                <div role="tabpanel" class="tab-pane active" id="home">
+                    <div id="data-discover-social-need">            
+                        <?php
+                        if ($data_discover2) {
+                            foreach ($data_discover2 as $res) {
+                                $sn_group_pic = $res['group_pic'];
+                                if ($res['group_pic']) {
+                                    $sn_group_pic = $base_url . 'uploads/' . $res['group_pic'];
+                                } else {
+                                    $sn_group_pic = $base_url . 'wall_icons/default.png';
+                                }
+                                $sn_title = $res['sn_title'];
+                                $sn_content = $res['sn_content'];
+                                $sn_keywords = $res['sn_keywords'];
+                                ?>
+                                <div class="content-discover-project">
+
+                                    <div class="media-left media-middle">
+                                        <a href="<?php echo $base_url . 'group.php?gid=' . $res['group_id'] . '&ptab=contents' ?>">
+                                            <img class="media-object" src="<?php echo $sn_group_pic; ?>" />
+                                        </a>
+                                    </div>
+                                    <div class="media-body">
+                                        <h4 class="media-heading text-primary"><?php echo $sn_title; ?></h4>
+                                        <p><?php echo $sn_content; ?>
+                                        </p>
+                                        <p>Keywords : <?php echo $sn_keywords; ?></p>
+                                        <button class="btn btn-default btn-invole">Get Involved</button>
+                                        <button class="btn btn-default btn-share">Share</button>
+                                        <button class="btn btn-default btn-follow">Follow</button>
+                                   </div>
+
+                                </div>
+                            <?php
+                            }
+                        }
+                        ?>
+                    </div>
+                </div>
+                
+                <div role="tabpanel" class="tab-pane" id="profile">
+                    <!--        <input id="Button1" type="button" value="Click" onclick="switchVisible();"/>-->
+                    <div id="data-discover-project">
+                        <?php
+                        if ($data_discover) {
+                            foreach ($data_discover as $res) {
+                                $group_pic = $res['group_pic'];
+                                if ($res['group_pic']) {
+                                    $group_pic = $base_url . 'uploads/' . $res['group_pic'];
+                                } else {
+                                    $group_pic = $base_url . 'wall_icons/default.png';
+                                }
+                                $p_name = $res['group_name'];
+                                $p_content = $res['proj_intro'];
+                                $p_keywords = $res['keywords'];
+                                $p_start = $res['start_date'];
+                                $p_end = $res['end_date'];
+                                ?>
+                                <div class="content-discover-project">
+
+                                    <div class="media-left media-middle">
+                                        <a href="<?php echo $base_url . 'group.php?gid=' . $res['group_id'] ?>">
+                                            <img class="media-object" src="<?php echo $group_pic; ?>" />
+                                        </a>
+                                    </div>
+                                    <div class="media-body">
+                                        <h4 class="media-heading"><?php echo $p_name; ?></h4>
+                                        <p><?php echo $p_content; ?>
+                                        </p>
+                                        <p>Keywords : <?php echo $p_keywords; ?></p>
+                                        <p><?php echo $p_start . " to " . $p_end; ?></p> 
+                                        <button class="btn btn-default btn-invole">Get Involved</button>
+                                        <button class="btn btn-default btn-share">Share</button>
+                                        <button class="btn btn-default btn-follow">Follow</button>
+                                    </div>
+                                </div>
+                            <?php
+                            }
+                        }
+                        ?>
+                    </div>
+                </div>
+            </div>
+    </div>
+</div>
+
+<script>
+                    function autocomplete_area_focus() {
+                        var min_length = 0; // min caracters to display the autocomplete
+                        var keyword = $('#search_area_focus').val();
+                        if (keyword.length > min_length) {
+                            $.ajax({
+                                url: 'autocomplete_area_focus.php',
+                                type: 'POST',
+                                data: {keyword: keyword},
+                                success: function(data) {
+                                    $('#search_area_focus_id').show();
+                                    $('#search_area_focus_id').html(data);
+                                }
+                            });
+                        } else {
+                            $('#search_area_focus_id').hide();
+                        }
+                    }
+
+                    // set_item : this function will be executed when we select an item
+                    function set_item_area_focus(item1, item2) {
+                        // change input value
+                        $('#search_area_focus').val("");
+
+                        var input = document.getElementsByName("area_focus[]");
+                        var values = [];
+                        for (var i = 0, iLen = input.length; i < iLen; i++) {
+                            values.push(input[i].value);
+                        }
+                        //         if(jQuery.inArray(item1, input)<0)
+                        if (jQuery.inArray(item1, values) !== -1) {
+                            var j = jQuery.inArray(item1, values);
+                            document.getElementsByName("area_focus[]")[j].checked = true;
+                        } else {
+                            var newdiv = document.createElement('div');
+                            newdiv.innerHTML = "<input type=checkbox name='area_focus[]' checked='checked' value='" + item1 + "' />" + item1 + "(" + item2 + ")" + "<br>";
+                            document.getElementById('dynamicAreaFocus').appendChild(newdiv);
+                        }
+                        // hide proposition list
+                        $('#search_area_focus_id').hide();
+                    }
+
+                    function autocomplete_language() {
+                        var min_length = 0; // min caracters to display the autocomplete
+                        var keyword = $('#search_language').val();
+                        if (keyword.length > min_length) {
+                            $.ajax({
+                                url: 'autocomplete_language.php',
+                                type: 'POST',
+                                data: {keyword: keyword},
+                                success: function(data) {
+                                    $('#search_language_id').show();
+                                    $('#search_language_id').html(data);
+                                }
+                            });
+                        } else {
+                            $('#search_language_id').hide();
+                        }
+                    }
+
+                    // set_item : this function will be executed when we select an item
+//            function set_item_language2(item1, item2) {
+//                    $('#search_language').val("");
+//                    
+//                    var input = document.getElementsByName("language[]");
+//                    var values_lang = [];
+//                    for (var i=0, iLen=input.length; i<iLen; i++) {
+//                         values_lang.push(input[i].value);
+//                    }
+//           //         if(jQuery.inArray(item1, input)<0)
+//                    if(jQuery.inArray(item1, values_lang)!==-1){
+//                        var k = jQuery.inArray(item1, values_lang);
+//                        document.getElementsByName("language[]")[k].checked = true;
+//                    }else{
+//                        var newdiv = document.createElement('div');
+//                        newdiv.innerHTML = "<input type=checkbox checked='checked' value='"+item1+"' name='language[]'>"+item1+"("+item2+")"+"<br>";
+//                        document.getElementById('dynamicLanguage').appendChild(newdiv);
+//                    }    
+//                    $('#search_language_id').hide();
+//            }
+
+                    function set_item_language(item1, item2) {
+                        $('#search_language').val("");
+
+                        var newdiv = document.createElement('div');
+                        newdiv.innerHTML = "<input type=checkbox name='language[]' checked='checked' value='" + item1 + "'>" + item1 + "(" + item2 + ")" + "<br>";
+                        document.getElementById('dynamicLanguage').appendChild(newdiv);
+
+                        $('#search_language_id').hide();
+                    }
+
+                    function switchVisible() {
+                        if (document.getElementById('data-discover-project')) {
+
+                            if (document.getElementById('data-discover-project').style.display == 'none') {
+                                document.getElementById('data-discover-project').style.display = 'block';
+                                document.getElementById('data-discover-social-need').style.display = 'none';
+                            }
+                            else {
+                                document.getElementById('data-discover-project').style.display = 'none';
+                                document.getElementById('data-discover-social-need').style.display = 'block';
+                            }
+                        }
+                    }
+
+</script>

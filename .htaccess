@@ -1,0 +1,33 @@
+RewriteEngine On
+RewriteRule ^([a-zA-Z0-9_-]+)$ profile.php?username=$1
+RewriteRule ^([a-zA-Z0-9_-]+)/$ profile.php?username=$1
+
+RewriteRule ^status/([0-9]+)$ status.php?msgID=$1
+RewriteRule ^status/([0-9]+)/$ status.php?msgID=$1
+
+RewriteRule ^messages/([a-zA-Z0-9_-]+)$ messages.php?message_username=$1
+RewriteRule ^messages/([a-zA-Z0-9_-]+)/$ messages.php?message_username=$1
+
+RewriteRule ^friends/([a-zA-Z0-9_-]+)$ friends.php?username=$1
+RewriteRule ^friends/([a-zA-Z0-9_-]+)/$ friends.php?username=$1
+
+RewriteRule ^friends/([a-zA-Z0-9_-]+)/([0-9]+)$ friends.php?username=$1&page=$2
+RewriteRule ^friends/([a-zA-Z0-9_-]+)/([0-9]+)/$ friends.php?username=$1&page=$2
+
+RewriteRule ^groups/([0-9]+)$ group.php?groupID=$1
+RewriteRule ^groups/([0-9]+)/$ group.php?groupID=$1
+
+RewriteRule ^groups/([0-9]+)/([a-zA-Z0-9_-]+)$ group_members.php?groupID=$1&track=$2
+RewriteRule ^groups/([0-9]+)/([a-zA-Z0-9_-]+)/$ group_members.php?groupID=$1&track=$2
+
+RewriteRule ^photos/([a-zA-Z0-9_-]+)$ photos.php?username=$1
+RewriteRule ^photos/([a-zA-Z0-9_-]+)/$ photos.php?username=$1
+
+RewriteRule ^photos/([a-zA-Z0-9_-]+)/([0-9]+)$ photos.php?username=$1&page=$2
+RewriteRule ^photos/([a-zA-Z0-9_-]+)/([0-9]+)/$ photos.php?username=$1&page=$2
+
+RewriteRule ^photos_of/([a-zA-Z0-9_-]+)$ photos.php?q=1&username=$1
+RewriteRule ^photos_of/([a-zA-Z0-9_-]+)/$ photos.php?q=1&username=$1
+
+RewriteRule ^photos_of/([a-zA-Z0-9_-]+)/([0-9]+)$ photos.php?q=1&username=$1&page=$2
+RewriteRule ^photos_of/([a-zA-Z0-9_-]+)/([0-9]+)/$ photos.php?q=1&username=$1&page=$2

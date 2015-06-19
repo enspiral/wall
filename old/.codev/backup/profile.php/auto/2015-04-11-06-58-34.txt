@@ -1,0 +1,254 @@
+<style>
+    .profile{
+        background: white;
+        border-radius: 5px;
+        padding:40px;
+        padding-top: 10px;
+        box-shadow: 0px 0px 2px #888888;
+    }
+    .profile .table .btn{
+        border-radius: 4px;
+    }
+    .profile .table .img-circle{
+        border-radius: 50%;
+    }
+    .profile .bootstrap-tagsinput{
+        border-radius: 0px;
+        width:100%;
+    }
+</style>
+
+
+<?php 
+
+$userdetails=$Wall->User_Details($uid);
+$username=$userdetails['username'];
+$email=$userdetails['email'];
+$full_name=$userdetails['full_name'];
+$profile_pic=$userdetails['profile_pic'];
+$contact=$userdetails['phone'];
+$usr_about = $userdetails['bio'];
+$usr_skills=$userdetails['skills'];
+$usr_interest=$userdetails['interest'];
+
+if($username)
+{
+    $project_follow=$Wall->getProject_follow($uid); //uid
+    $community_follow = $Wall->getCommunity_follow($uid);
+    $getProject_participate = $Wall->getProject_participate($uid);
+}
+?>
+
+
+
+<div class="row">
+    <div class="col-lg-3 sidebar-left">
+        <?php include_once 'block_left_dashboard.php'; ?>
+    </div>
+    <div class="col-lg-6 middle-content">
+    	<div class="profile">
+	    <h4><?php echo $full_name ? $full_name:$username; ?></h4>
+	    <table class="table">
+	        <tr>
+	            <td>About</td>
+	            <td>
+                        <?php echo strlen($usr_about)>0 ? '<span>'.$usr_about.'</span>':'<span>tell us about yourself here</span>'; ?>
+                    </td>
+                    <td>
+                        <i class="glyphicon glyphicon-pencil custom-file-input" original-title="edit about" data-toggle="modal" data-target="#edit_about"></i>
+                        <div class="modal fade" id="edit_about" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                        <h4 class="modal-title" id="exampleModalLabel">Edit About</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <input type="text" class="form-control" id="about" name="about" value="<?php echo $usr_about; ?>"/>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">Cancel</button>
+                                            <button id="submit_about" name="save" class="btn btn-sm btn-primary update-profile">Update</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+	        </tr>
+	        <tr>
+                    <td>Contact</td>
+	            <td>
+                        <?php echo strlen($contact)>0 ? '<span>'.$contact.' </span>':'<span>Tell us about your contact here </span>';?>
+                    </td>
+                    <td>
+                        <i class="glyphicon glyphicon-pencil custom-file-input" original-title="edit contact" data-toggle="modal" data-target="#edit_contact"></i>
+                        <div class="modal fade" id="edit_contact" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                        <h4 class="modal-title" id="exampleModalLabel">Edit Contact</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <input type="text" class="form-control" name="contact" id="contact" value="<?php echo $contact; ?>"/>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">Cancel</button>
+                                            <button id="submit_contact" name="save" class="btn btn-sm btn-primary update-profile">Update</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+	        </tr>
+	        <tr>
+	            <td>Email</td>
+	            <td><span><?php echo $email; ?></span></td>
+                    <td>
+                        <i class="glyphicon glyphicon-pencil custom-file-input" data-toggle="modal" data-target="#edit_email" original-title="edit email"></i>
+                        <div class="modal fade" id="edit_email" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                        <h4 class="modal-title" id="exampleModalLabel">Edit Email</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <input type="email" class="form-control" name="email" id="email" value="<?php echo $email; ?>"/>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">Cancel</button>
+                                            <button id="submit_email" name="save" class="btn btn-sm btn-primary update-profile">Update</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+	        </tr>
+	        <tr>
+	            <td>Skills</td>
+	            <td>
+                         <span>
+                             <?php if(strlen($usr_skills)>0){
+                                 $my_skills = explode(',', $usr_skills); 
+                                foreach ($my_skills as $r){
+                                    echo '<button class="btn btn-xs btn-primary">'.$r.'</button>'."&nbsp";
+                                }
+                             }else{
+                                 echo "Update your skills here";
+                             }
+                        ?>
+                        </span>    
+                       
+                        
+                    </td>
+                    <td>
+                        <i class="glyphicon glyphicon-pencil custom-file-input" data-toggle="modal" data-target="#edit_skill" original-title="edit skills"></i>
+                        <div class="modal fade" id="edit_skill" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                        <h4 class="modal-title" id="exampleModalLabel">Edit Skills</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <input type="text" id="skills" name='skills' class="form-control form-skills usr_skills" data-role="tagsinput"  value="<?php echo $usr_skills; ?>" required=""/>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">Cancel</button>
+                                            <button id="submit_skill" name="save" class="btn btn-sm btn-primary update-profile">Update</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+	        </tr>
+	        <tr>
+	            <td>Interest</td>
+	            <td>
+                         <span>
+                             <?php if(strlen($usr_interest)>0){
+                                 $my_interest = explode(',', $usr_interest); 
+                                foreach ($my_interest as $r){
+                                    echo '<button class="btn btn-xs btn-success">'.$r.'</button>'."&nbsp";
+                                }
+                             }else{
+                                 echo "Update your interest here";
+                             }
+                        ?>
+                        </span>
+                    </td>
+                    <td>
+                        <i class="glyphicon glyphicon-pencil custom-file-input" data-toggle="modal" data-target="#edit_interest" original-title="edit interest"></i>
+                        <div class="modal fade" id="edit_interest" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                        <h4 class="modal-title" id="exampleModalLabel">Edit Interest</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <input type="text" id="interest" name='interest' class="form-control form-skills usr_skills" data-role="tagsinput"  value="<?php echo $usr_interest; ?>" required=""/>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">Cancel</button>
+                                            <button id="submit_interest" name="save" class="btn btn-sm btn-primary update-profile">Update</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+	        </tr>
+	       
+	    </table>
+            
+	</div>
+    </div>
+    <div class="col-lg-3 sidebar-right">
+        <?php include_once 'block_right.php'; ?>
+    </div>
+</div>
+
+
+<script>
+    
+    
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+    });
+    
+    $("input.usr_skills").val();
+    $("input.usr_skills").tagsinput('items');
+    
+    $("input.usr_interest").val();
+    $("input.usr_interest").tagsinput('items');
+    
+    $('.glyphicon-pencil').css('cursor','pointer');
+    
+    $('.update-profile').click(function(){
+        var about = $('#about').val();
+        var contact = $('#contact').val();
+        var email = $('#email').val();
+        var skills = $('#skills').val();
+        var interest = $('#interest').val();
+        $.ajax({
+            type:'POST',
+            url:'<?php echo $base_url; ?>project/ajax-project.php',
+            data:{
+               about    :about,
+               contact  :contact,
+               email    :email,
+               skills    :skills,
+               interest    :interest,
+               uid      : "<?php echo $uid; ?>",
+               post_type:'edit_profile',
+            },
+            success:function(data){
+                location.reload();
+            },error:function(data){
+                alert(data);
+            }
+        });
+    });
+
+</script>

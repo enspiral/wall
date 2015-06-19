@@ -1,0 +1,58 @@
+#panel {
+border: solid 1px #f2f2f2;
+height: 300px;
+padding: 20px;
+background-color: #e5e5e5;
+color:#333;
+}
+.signup {
+margin-left: 6px;
+margin-right: 1px;
+}
+.select {
+background-color: #e5e5e5;
+}
+.loginLabel {
+font-size: 13px;color:#666666;
+margin-bottom: 5px;
+}
+
+.input {
+padding: 10px !important;
+font-size: 14px;
+border: 1px solid #999999;
+width: 200px;
+margin-bottom: 10px;
+border: 1px solid #e5e5e5;
+background: #fbfbfb;
+box-shadow: inset 1px 1px 2px rgba(200,200,200,0.2);
+}
+
+
+.box {
+min-height:356px;
+width:202px;
+margin: 0px auto;
+text-align: left;
+padding: 20px;
+background-color: #ffffff;
+color: #333;
+border: 1px solid #e5e5e5;
+box-shadow: rgba(200,200,200,0.7) 0 4px 10px -1px;
+}
+
+body
+{
+font-family: Arial, Helvetica, sans-serif;
+font: normal 12px helvetica,arial,sans-seri;
+font-weight:500;
+background-color:#e8e8e8;
+}
+#button {
+margin-top: 10px;
+text-align: left;
+}
+.msg{color:#00cc00;font-size:11px;display:block;text-align:left !important}
+.error{color:#cc0000;font-size:11px;display:block}
+.error_message{margin-bottom:10px;}
+.error_message p{color:red; font-size:11px; }

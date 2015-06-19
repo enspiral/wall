@@ -1,0 +1,440 @@
+<style>
+    .profile{
+        background: white;
+        border-radius: 5px;
+        padding:40px;
+        padding-top: 10px;
+        box-shadow: 0px 0px 2px #888888;
+    }
+    
+    .profile .table td{
+        border: none;
+    }
+    
+    .profile .table .btn{
+        border-radius: 4px;
+    }
+    .profile .table .img-circle{
+        border-radius: 50%;
+    }
+    .profile .bootstrap-tagsinput{
+        border-radius: 0px;
+        width:100%;
+    }
+</style>
+      
+      <script type="text/javascript" src="<?php echo $base_url.'js/popup-window.js' ?>"></script>
+      <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
+      <script>
+
+  // hide #back-top first
+  $(".back-top").hide();
+  
+  // fade in #back-top
+  $(function () {
+    $(window).scroll(function () {
+      if ($(this).scrollTop() > 100) {
+        $('.back-top').fadeIn();
+      } else {
+        $('.back-top').fadeOut();
+      }
+    });
+
+    // scroll body to 0px on click
+    $('.back-top a').click(function () {
+      $('body,html').animate({
+        scrollTop: 0
+      }, 800);
+      return false;
+    });
+  });
+
+</script>
+
+<?php 
+
+$userdetails=$Wall->User_Details($uid);
+$username=$userdetails['username'];
+$email=$userdetails['email'];
+$full_name=$userdetails['full_name'];
+$profile_pic=$userdetails['profile_pic'];
+$contact=$userdetails['phone'];
+$usr_about = $userdetails['bio'];
+$usr_skills=$userdetails['skills'];
+$usr_interest=$userdetails['interest'];
+$birthday=$userdetails['birthday'];
+$country=$userdetails['country'];
+$address=$userdetails['address'];
+$fname=$userdetails['first_name'];
+$lname=$userdetails['last_name'];
+
+if($username)
+{
+    $project_follow=$Wall->getProject_follow($uid); //uid
+    $community_follow = $Wall->getCommunity_follow($uid);
+    $getProject_participate = $Wall->getProject_participate($uid);
+}
+?>
+
+
+
+<div class="row">
+    <div class="sidebar-left">
+        <?php include_once 'block_left_dashboard.php'; ?>
+    </div>
+    <div class="middle-content" id="top">
+    	<div class="profile">
+	  <!--   <h4><?php //echo $full_name ? $full_name:$username; ?></h4> -->
+      <h4>Basic Information</h4>
+      <hr>
+	    <table class="table">
+             <tr>
+                <td>Name</td>
+                <td><span class="text-profile"><?php echo $fname.' '.$lname; ?></span></td>
+                    <td>
+                        <a href="" data-toggle="modal" data-target="#edit_name"><i class="glyphicon glyphicon-edit custom-file-input" original-title="edit name" data-toggle="modal"></i></a>
+                        <!-- <i class="glyphicon glyphicon-pencil custom-file-input" data-toggle="modal" data-target="#edit_name" original-title="edit name"></i> -->
+                        <div class="modal fade" id="edit_name" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                        <h4 class="modal-title" id="exampleModalLabel">Edit Name</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        First Name : <input type="text" class="form-control" name="first_name" id="fname" value="<?php echo $fname; ?>"/>
+                                        Last Name : <input type="text" class="form-control" name="last_name" id="lname" value="<?php echo $lname; ?>"/>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">Cancel</button>
+                                            <button id="submit_name" name="save" class="btn btn-sm btn-primary update-profile">Update</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+            </tr>
+	        <tr>
+	            <td>About</td>
+	            <td>
+                        <?php echo strlen($usr_about)>0 ? '<span class="text-profile">'.$usr_about.'</span>':'<span>tell us about yourself here</span>'; ?>
+                    </td>
+                    <td>
+                        <a href="" data-toggle="modal" data-target="#edit_about"><i class="glyphicon glyphicon-edit custom-file-input" original-title="edit about" data-toggle="modal"></i></a>
+                        <!-- <i class="glyphicon glyphicon-pencil custom-file-input" original-title="edit about" data-toggle="modal" data-target="#edit_about"></i> -->
+                        <div class="modal fade" id="edit_about" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                        <h4 class="modal-title" id="exampleModalLabel">Edit About</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <input type="text" class="form-control" id="about" name="about" value="<?php echo $usr_about; ?>"/>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">Cancel</button>
+                                            <button id="submit_about" name="save" class="btn btn-sm btn-primary update-profile">Update</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+	        </tr>
+	        <tr>
+                    <td>Contact</td>
+	            <td>
+                        <?php echo strlen($contact)>0 ? '<span class="text-profile">'.$contact.' </span>':'<span>Tell us about your contact here </span>';?>
+                    </td>
+                    <td>
+                        <a href="" data-toggle="modal" data-target="#edit_contact"><i class="glyphicon glyphicon-edit custom-file-input" original-title="edit contact" data-toggle="modal"></i></a>
+                        <!-- <i class="glyphicon glyphicon-pencil custom-file-input" original-title="edit contact" data-toggle="modal" data-target="#edit_contact"></i> -->
+                        <div class="modal fade" id="edit_contact" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                        <h4 class="modal-title" id="exampleModalLabel">Edit Contact</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <input type="text" class="form-control" name="contact" id="contact" value="<?php echo $contact; ?>"/>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">Cancel</button>
+                                            <button id="submit_contact" name="save" class="btn btn-sm btn-primary update-profile">Update</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+	        </tr>
+	        <tr>
+	            <td>Email</td>
+	            <td><span class="text-profile"><?php echo $email; ?></span></td>
+                    <td>
+                        <a href="" data-toggle="modal" data-target="#edit_email"><i class="glyphicon glyphicon-edit custom-file-input" original-title="edit email" data-toggle="modal"></i></a>
+                        <!-- <i class="glyphicon glyphicon-edit custom-file-input" data-toggle="modal" data-target="#edit_email" original-title="edit email"></i> -->
+                        <div class="modal fade" id="edit_email" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                        <h4 class="modal-title" id="exampleModalLabel">Edit Email</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <input type="email" class="form-control" name="email" id="email" value="<?php echo $email; ?>"/>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">Cancel</button>
+                                            <button id="submit_email" name="save" class="btn btn-sm btn-primary update-profile">Update</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+	        </tr>
+            <tr>
+                <td>Date Of Birth</td>
+                <td><span class="text-profile"><?php echo $birthday; ?></span></td>
+                    <td>
+                        <a href="" data-toggle="modal" data-target="#edit_birthday"><i class="glyphicon glyphicon-edit custom-file-input" original-title="edit birthday" data-toggle="modal"></i></a>
+                        <!-- <i class="glyphicon glyphicon-pencil custom-file-input" data-toggle="modal" data-target="#edit_birthday" original-title="edit date of birth"></i> -->
+                        <div class="modal fade" id="edit_birthday" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                        <h4 class="modal-title" id="exampleModalLabel">Edit brithday</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <input type="input" class="form-control" name="birthday" id="birthday" value="<?php echo $birthday; ?>"/>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">Cancel</button>
+                                            <button id="submit_email" name="save" class="btn btn-sm btn-primary update-profile">Update</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+            </tr>
+            <tr>
+                <td>Country</td>
+                <td><span class="text-profile"><?php echo $country; ?></span></td>
+                    <td>
+                        <a href="" data-toggle="modal" data-target="#edit_country"><i class="glyphicon glyphicon-edit custom-file-input" original-title="edit country" data-toggle="modal"></i></a>
+                        <!-- <i class="glyphicon glyphicon-pencil custom-file-input" data-toggle="modal" data-target="#edit_country" original-title="edit country"></i> -->
+                        <div class="modal fade" id="edit_country" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                        <h4 class="modal-title" id="exampleModalLabel">Edit Country</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <input type="email" class="form-control" name="country" id="countrys" value="<?php echo $country; ?>"/>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">Cancel</button>
+                                            <button id="submit_email" name="save" class="btn btn-sm btn-primary update-profile">Update</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+            </tr>
+             <tr>
+                <td>Address</td>
+                <td><span class="text-profile"><?php echo $address; ?></span></td>
+                    <td>
+                        <a href="" data-toggle="modal" data-target="#edit_address"><i class="glyphicon glyphicon-edit custom-file-input" original-title="edit country" data-toggle="modal"></i></a>
+                        <!-- <i class="glyphicon glyphicon-pencil custom-file-input" data-toggle="modal" data-target="#edit_address" original-title="edit addres"></i> -->
+                        <div class="modal fade" id="edit_address" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                        <h4 class="modal-title" id="exampleModalLabel">Edit Address</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <input type="email" class="form-control" name="address" id="address" value="<?php echo $address; ?>"/>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">Cancel</button>
+                                            <button id="submit_email" name="save" class="btn btn-sm btn-primary update-profile">Update</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+            </tr>
+            </table>
+            <h4>Skills and Interest</h4>
+            <hr class="all-hr-project">
+            <table class="table">
+             <tr>
+                <td>Skills</td>
+                <td>
+                         <span>
+                             <?php if(strlen($usr_skills)>0){
+                                 $my_skills = explode(',', $usr_skills); 
+                                foreach ($my_skills as $r){
+                                    echo '<button class="btn btn-xs btn-primary text-profile">'.$r.'</button>'."&nbsp";
+                                }
+                             }else{
+                                 echo "Update your skills here";
+                             }
+                        ?>
+                        </span>    
+                       
+                        
+                    </td>
+                    <td>
+                        <a href="" data-toggle="modal" data-target="#edit_skill"><i class="glyphicon glyphicon-edit custom-file-input" original-title="edit skill" data-toggle="modal"></i></a>
+                        <!-- <i class="glyphicon glyphicon-pencil custom-file-input" data-toggle="modal" data-target="#edit_skill" original-title="edit skills"></i> -->
+                        <div class="modal fade" id="edit_skill" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                        <h4 class="modal-title" id="exampleModalLabel">Edit Skills</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <input type="text" id="skills" name='skills' class="form-control form-skills usr_skills" data-role="tagsinput"  value="<?php echo $usr_skills; ?>" required=""/>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">Cancel</button>
+                                            <button id="submit_skill" name="save" class="btn btn-sm btn-primary update-profile">Update</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+            </tr>
+            <tr>
+                <td>Interests</td>
+                <td>
+                         <span>
+                             <?php if(strlen($usr_interest)>0){
+                                 $my_interest = explode(',', $usr_interest); 
+                                foreach ($my_interest as $r){
+                                    echo '<button class="btn btn-xs btn-success text-profile">'.$r.'</button>'."&nbsp";
+                                }
+                             }else{
+                                 echo "Update your interest here";
+                             }
+                        ?>
+                        </span>
+                    </td>
+                    <td>
+                        <a href="" data-toggle="modal" data-target="#edit_interest"><i class="glyphicon glyphicon-edit custom-file-input" original-title="edit skill" data-toggle="modal"></i></a>
+                        <!-- <i class="glyphicon glyphicon-pencil custom-file-input" data-toggle="modal" data-target="#edit_interests" original-title="edit interest"></i> -->
+                        <div class="modal fade" id="edit_interest" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                        <h4 class="modal-title" id="exampleModalLabel">Edit Interests</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <input type="text" id="interest" name='interest' class="form-control form-skills usr_skills" data-role="tagsinput"  value="<?php echo $usr_interest; ?>" required=""/>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">Cancel</button>
+                                            <button id="submit_interest" name="save" class="btn btn-sm btn-primary update-profile">Update</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+            </tr>
+	       
+	    </table>
+        <h4>Project Following</h4>
+        <hr class="all-hr-project"><br/>
+        <div>
+            <img src="images/program/program_plan.png" style="width:50px; height:50px;">
+            <img src="images/program/program_plan.png" style="width:50px; height:50px;">
+            <img src="images/program/program_plan.png" style="width:50px; height:50px;">
+
+        </div>
+        <h4>Communities Following</h4>
+         <hr class="all-hr-project">
+         <div>
+            <img src="images/program/program_plan.png" style="width:50px; height:50px;">
+            <img src="images/program/program_plan.png" style="width:50px; height:50px;">
+            <img src="images/program/program_plan.png" style="width:50px; height:50px;">
+
+        </div>
+        <h4>Project Participation</h4>
+         <hr class="all-hr-project">
+        <h4>Organization</h4>
+         <hr class="all-hr-project">
+            
+	</div>
+    </div>
+    <div class="sidebar-right-dabshoard">
+        <?php include_once 'block_right.php'; ?>
+        <p class="back-top">
+            <a href="#top"><span></span></a>
+        </p>
+    </div>
+</div>
+
+
+<script> 
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+    });
+    
+    $("input.usr_skills").val();
+    $("input.usr_skills").tagsinput('items');
+    
+    $("input.usr_interest").val();
+    $("input.usr_interest").tagsinput('items');
+    
+    $('.glyphicon-pencil').css('cursor','pointer');
+    
+    $('.update-profile').click(function(){
+        var about = $('#about').val();
+        var contact = $('#contact').val();
+        var email = $('#email').val();
+        var skills = $('#skills').val();
+        var interest = $('#interest').val();
+        var birthday = $('#birthday').val();
+        var country = $('#countrys').val();
+        var address = $('#address').val();
+        var first_name = $('#fname').val();
+        var last_name = $('#lname').val();
+   
+        $.ajax({
+            type:'POST',
+            url:'<?php echo $base_url; ?>project/ajax-project.php',
+            data:{
+               about    :about,
+               contact  :contact,
+               email    :email,
+               skills    :skills,
+               interest  :interest,
+               birthday   :birthday,
+               country    :country,
+               address    :address,
+               first_name :first_name,
+               last_name  :last_name,
+               uid      : "<?php echo $uid; ?>",
+               post_type:'edit_profile',
+            },
+            success:function(data){
+                location.reload();
+            },error:function(data){
+                alert(data);
+            }
+        });
+    });
+
+</script>
+<script>
+    $("#birthday").datepicker({
+        format: 'yyyy-mm-dd'
+    });
+</script>

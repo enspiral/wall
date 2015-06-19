@@ -1,0 +1,58 @@
+<style>
+    .form-contact input{
+        margin-bottom: 10px;
+        width:100%;
+    }
+    .form-contact .btn-submit{
+        color:pink;
+        background-color: white;
+        border:1px solid pink;
+        padding:3px 30px;
+        width:30px;
+    }
+    
+</style>
+
+
+<?php
+$email_userown = $Wall->userEmail($group_owner_id);
+$message = '';
+//if "email" variable is filled out, send email
+if (isset($_REQUEST['submit'])){
+  
+    $to = "rottanaly@gmail.com";
+    $subject = $_REQUEST['subject'];
+    $txt = $_REQUEST['comment'];
+    $headers = "From: ".$_REQUEST['email']."\n".
+    "CC: ".$ssemail.$email_userown['email'];
+
+    mail($to,$subject,$txt,$headers);
+
+      //Email response
+      $message = "Your message have been sent to adminitrator. Thank you for contacting us!";
+      
+}
+
+?>
+
+
+<div class="text" align="center">    
+    <p class="text-orange text-title" style="text-align:left;">Contact Us</p><hr style="margin-top:-5px; margin-bottom:10px;">
+    <form method="post" style="width:500px;" class="form-contact">
+        <?php echo $message!= NULL ?'<div class="msg" align="center"><p class="alert alert-info">'. $message.'</p></div>':'' ?>
+        <div class="row">
+            <div class="col-md-6">
+                <input name="name" type="text" class="form-control" placeholder="Name" required=""/>
+            </div>
+            <div class="col-md-6">
+                <input class="text- form-control" name="email" type="email" placeholder="Email" required=""/>
+            </div>
+        </div>
+        <div class="row"><input class="text-input form-control" name="subject" type="text" placeholder="Subject" required=""/></div>
+        <div class="row">
+            <textarea style="height: 150px;" class="form-control" name="comment" rows="15" cols="40" placeholder="Message" required=""></textarea><br />
+        </div>
+        <input name="submit" type="submit" value="Submit" class="btn btn-xs btn-submit"/>
+    </form>
+</div>
+

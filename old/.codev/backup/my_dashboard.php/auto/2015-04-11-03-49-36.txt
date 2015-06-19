@@ -1,0 +1,14 @@
+
+<div class="row">
+    <div class="col-lg-3 sidebar-left">
+        <?php include_once 'block_left_dashboard.php'; ?>
+    </div>
+    <div class="col-lg-6 middle-content">
+        <?php
+        include('block_updates.php');
+        ?>
+    </div>
+    <div class="col-lg-3 sidebar-right">
+        <?php include_once 'block_right.php'; ?>
+    </div>
+</div>

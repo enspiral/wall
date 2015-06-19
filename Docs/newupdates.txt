@@ -1,0 +1,55 @@
+Added.
+
+alter table `users` add full_name varchar(150);
+
+
+New table
+
+create table message_like(
+like_id int not null primary key auto_increment,
+msg_id_fk int not null,
+uid_fk int not null,
+FOREIGN KEY (uid_fk) REFERENCES users(uid),
+FOREIGN KEY (msg_id_fk) REFERENCES messages(msg_id)
+);
+
+
+create table message_share(
+share_id int not null primary key auto_increment,
+msg_id_fk int not null,
+uid_fk int not null,
+ouid_fk int not null,
+created int not null,
+FOREIGN KEY (uid_fk) REFERENCES users(uid),
+FOREIGN KEY (msg_id_fk) REFERENCES messages(msg_id));
+
+New Message
+
+alter table `messages` add like_count int default '0';
+alter table `messages` add comment_count int default '0';
+alter table `messages` add share_count int default '0';
+
+
+alter table `message_like` add created int default '0';
+
+CREATE TABLE IF NOT EXISTS `comment_like` (
+  `clike_id` int(11) NOT NULL AUTO_INCREMENT,
+  `com_id_fk` int(11) NOT NULL,
+  `uid_fk` int(11) NOT NULL,
+  PRIMARY KEY (`clike_id`),
+ FOREIGN KEY (com_id_fk) REFERENCES comments(come_id),
+FOREIGN KEY (uid_fk) REFERENCES users(uid)
+) 
+;
+
+alter table `comments` add like_count int default '0'; 
+alter table `users` add profile_pic_status int(1) default '0';
+
+alter table `users` add updates_count int default '0'; 
+
+
+alter table users conversation_count int default 0; 
+
+ALTER TABLE  `messages` MODIFY  `message`   TEXT CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL
+
+ALTER TABLE  `comments` MODIFY  `comment`   TEXT CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL

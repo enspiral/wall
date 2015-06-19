@@ -1,0 +1,216 @@
+<div class="row bg-search-header">
+	
+	<div class="col-lg-1"></div>
+	<div class="col-lg-10 seach-header">
+    <h2 class="search-text-ddd">I want to find a <br/>#SustainableVolunteerning Oppportunity</h2>
+    <span class="search-by"><b>Search By : </b></span><span class="search-color-text"><br/>Place Duration. Time period. Area of focus Skills, Requried Language. Project name. Team name. Organization name....</span><br/><br/>
+		<form>
+  				<div class="form-group">
+  				  <input type="email" class="form-control input-search" id="exampleInputEmail1" placeholder="Search">
+  				</div>
+
+		<div class="row">
+			<div class="col-lg-3"></div>
+			<div class="col-lg-3"> 
+				<div class="form-group">
+					<label class="search-text"> From: </label>  
+	                <div class='input-group date' id='datetimepicker1'>
+	                    <input type='text' class="form-control input-search" />
+	                    <span class="input-group-addon">
+	                        <span class="glyphicon glyphicon-calendar"></span>
+	                    </span>
+	                </div>
+               </div>
+
+           </div>
+			<div class="col-lg-3">
+					<div class="form-group">
+						<label class="search-text"> To: </label> 
+	                <div class='input-group date' id='datetimepicker1'>
+	                    <input type='text' class="form-control input-search" />
+	                    <span class="input-group-addon">
+	                        <span class="glyphicon glyphicon-calendar"></span>
+	                    </span>
+	                </div>
+               </div>
+
+			</div>
+			<div class="col-lg-3"></div>
+		</div>
+			  <div class="row serach-checkbox">
+			<div class="form-group">   
+		     	<label class="checkbox search-text">
+                    <input type="checkbox" value="remember-me">Remember Me
+               </label>         
+    			
+			</div></div>
+			<div class="row serach-checkbox">
+				<div class="form-group">
+    			<button type="submit" class="btn btn-default">Search</button>
+			</div>
+		</form>
+	<div class="col-lg-1"></div>
+</div> <!-- head -->
+</div>
+</div>
+<div class="row">
+	<h2 class="search-texth2">Can't think of what to search?</h2>
+	<div class="search-texth2" id="link"><img src="images/search/icon-slide.png"/></div>
+	</div>
+</div>
+<div class"row search-content" id="test">
+	<h2 class="search-texth3">Villages & Beneficiaries</h2>
+	<p class="search-color-text-one">You volunteer once, but we keep the projects going until desired social impacts have been realized!".</p>
+	<hr class="hr-search">
+		<div class="image-search-slid">
+				<!-- start code -->
+
+         <ul class="bxslider">
+  <li><img src="images/img-002.jpg" width="349" height="300"/></li>
+  <li><img src="images/img-004.jpg" width="349" height="300"/></li>
+  <li><img src="images/img-002.jpg" width="349" height="300"/></li>
+  <li><img src="images/img-004.jpg" width="349" height="300"/></li>
+   <li><img src="images/img-004.jpg" width="349" height="300"/></li>
+  <li><img src="images/img-002.jpg" width="349" height="300"/></li>
+  <li><img src="images/img-004.jpg" width="349" height="300"/></li>  
+</ul>
+
+	</div><br/>
+	<div class="search-benficaties"><button class="btn-benficate" >See more Benficaties</button></div>
+	<h2 class="search-texth3">Explore the World</h2>
+	<p class="search-color-text-one">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+  <div class="search-texth2" id="explore"><img src="images/search/icon-slide.png"/></div>
+<hr class="hr-search">
+<div class"search-content" id="link-explore">
+  <div class="row image-search-slid" id="image-search-slide-one">
+<div class="row">
+
+	<div class="col-lg-4 none-image"><img src="images/search/img-002.jpg"/><p class="keyword">Key word 1</p></div>
+	<div class="col-lg-4 none-image"><img src="images/search/img-003.jpg"/><p class="keyword">Key word 2</p></div>
+	<div class="col-lg-4 none-image"><img src="images/search/img-004.jpg"/><p class="keyword">Key word 3</p></div>
+</div>
+</div>
+<div style="margin-top:27px;"></div>
+<div class="row image-search-slid" id="image-search-slide-one">
+<div class="row">
+	<div class="col-lg-8 image-full-width"><img src="images/search/img-001.jpg" width="730" height="300"/><p class="keyword-width">Key word 1</p></div>
+	<div class="col-lg-4 none-image"><img src="images/search/img-004.jpg" /><p class="keyword">Key word 3</p></div>
+</div>
+</div>
+	<div class="row">
+	<h2 class="search-texth3">Ours Community</h2>
+	<p class="search-color-text-one">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+  <div class="search-texth2" id="community"><img src="images/search/icon-slide.png"/></div>
+<hr class="hr-search">
+<div class="image-search-slid" id="link-community">
+        <!-- Four -->
+<ul class="bxslider-four">
+   <li><img src="images/img-002.jpg" width="349" height="350"/><div class="four-slide-one"><b>Project Name</b>
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.Ut ornare at tell us aliquarn consequat.</p></div></li>
+  <li><img src="images/img-004.jpg" width="349" height="350"/>
+  <div class="project-name-one">Project Name</div>
+  <div class="text-slide-two">
+    <b>Project Titil</b><br/>
+  Lorem ipsum dolor sit amet, consectetur adipiscing elit.Ut ornare at tell us aliquarn consequat.
+  </div>
+  
+</li>
+  <li><img src="images/img-002.jpg" width="349" height="350"/><div class="project-name-two">Project Name</div>
+  <div class="text-slide-three">
+    <b>Project Titile</b><br/>
+  Lorem ipsum dolor sit amet, consectetur adipiscing elit.Ut ornare at tell us aliquarn consequat.
+  </div></li>
+  <li><img src="images/img-004.jpg" width="349" height="350"/><div class="text-slide-four">
+    <b>Project Title</b><br/>
+  Lorem ipsum dolor sit amet, consectetur adipiscing elit.Ut ornare at tell us aliquarn consequat.
+  </div></li>
+   <li><img src="images/img-004.jpg" width="349" height="350"/></li>
+  <li><img src="images/img-002.jpg" width="349" height="350"/></li>
+  <li><img src="images/img-004.jpg" width="349" height="350"/></li>  
+</ul>
+<br/></br>
+<!-- the end-->
+
+     
+
+</div><br/></br><br/></br>
+</div>
+
+<script type="text/javascript">
+            $(function () {
+                $('#datetimepicker2').datetimepicker({
+                    locale: 'ru'
+                });
+            });
+            // test div
+
+            $("#link").css("cursor","pointer");
+            $("#link").click(function() {
+			       $('html,body').animate({
+			       scrollTop: $("#test").offset().top},
+			       'slow');
+			     });
+            // end test div
+             // explore div 
+
+            $("#explore").css("cursor","pointer");
+            $("#explore").click(function() {
+             $('html,body').animate({
+             scrollTop: $("#link-explore").offset().top},
+             'slow');
+           });
+            // end explore div
+             // community div 
+
+            $("#community").css("cursor","pointer");
+            $("#community").click(function() {
+             $('html,body').animate({
+             scrollTop: $("#link-community").offset().top},
+             'slow');
+           });
+            // end community div
+        </script>
+ <script type="text/javascript">
+
+   $('.carousel[data-type="multi"] .item').each(function(){
+  var next = $(this).next();
+  if (!next.length) {
+    next = $(this).siblings(':first');
+  }
+  next.children(':first-child').clone().appendTo($(this));
+  
+  for (var i=0;i<2;i++) {
+    next=next.next();
+    if (!next.length) {
+    	next = $(this).siblings(':first');
+  	}
+    
+    next.children(':first-child').clone().appendTo($(this));
+  }
+});
+        </script>
+
+    
+
+<script type="text/javascript">
+//$(document).ready(function(){
+  $('.bxslider').bxSlider({
+  minSlides: 2,
+  maxSlides: 3,
+  slideWidth: 349,
+  slideMargin: 10
+});
+//});
+
+</script>
+<script type="text/javascript">
+//$(document).ready(function(){
+  $('.bxslider-four').bxSlider({
+  minSlides: 3,
+  maxSlides: 4,
+  slideWidth: 280,
+  slideMargin: 10
+});
+//});
+
+</script>

@@ -1,0 +1,269 @@
+<div class="font-content">
+
+
+
+<ul class="slider-text">
+  <li><p class="text-in-slide">A light weight jquery plugin with useful plugins for developing a small core carousel slider which has less impact on the website performance. The carousel plugin can be used to display vertical and horizontal slider animations with your set of gallery images.<p/></li>
+   <li><p class="text-in-slide">A light weight jquery plugin with useful plugins for developing a small core carousel slider which has less impact on the website performance. The carousel plugin can be used to display vertical and horizontal slider animations with your set of gallery images.<p/></li>
+  </ul>
+
+</div>
+<!-- the end of text slide -->
+<div class="accorde-slide">
+	
+
+	<div class="bs-example">
+    <div class="panel-group" id="accordion">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">Teach & Learn
+                        
+                    </a>
+                </h4>
+            </div>
+            <div id="collapseOne" class="panel-collapse collapse in">
+                <div class="panel-body">
+                    <p>HTML stands for HyperText Markup Language. HTML is the main markup language for describing the structure of Web pagesHTML stands for HyperText Markup Language. HTML is the main markup language for describing the structure of Web pages.</p><br/>
+                    <div class="row collapes-image">
+                    	<div class="col-lg-4">
+                    		<div><img src="images/enterprise.jpg"/></div><br/>
+                    		<div>World Development Report 2015: Mind, Society, and Behavior</div><br/>
+                    	</div>
+                    	<div class="col-lg-4">
+                    		<div><img src="images/apdptive.jpg"/></div><br/>
+                    		<div>World Development Report 2015: Mind, Society, and Behavior</div></br>
+                    	</div>
+                    	<div class="col-lg-4">
+                    		<div><img src="images/costa.jpg"/></div><br/>
+                    		<div>World Development Report 2015: Mind, Society, and Behavior</div></br>
+                    	</div>
+                    </div>
+
+                    <div class="row collapes-image">
+                    	<div class="col-lg-4">
+                    		<div><img src="images/web.jpg"/></div><br/>
+                    		<div>World Development Report 2015: Mind, Society, and Behavior</div>
+                    	</div>
+                    	<div class="col-lg-4">
+                    		<div><img src="images/destiny.jpg"/></div><br/>
+                    		<div>World Development Report 2015: Mind, Society, and Behavior</div>
+                    	</div>
+                    	<div class="col-lg-4">
+                    		<div><img src="images/design.jpg"/></div><br/>
+                    		<div>World Development Report 2015: Mind, Society, and Behavior</div>
+                    	</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">Sustain Your Project(s)</a>
+                </h4>
+            </div>
+            <div id="collapseTwo" class="panel-collapse collapse">
+                <div class="panel-body">
+                    <p>Bootstrap is a powerful front-end framework for faster and easier web development. It is a collection of CSS and HTML conventionsBootstrap is a powerful front-end framework for faster and easier web development. It is a collection of CSS and HTML conventionsBootstrap is a powerful front-end framework for faster and easier web development. It is a collection of CSS and HTML conventions.<p>
+                    	
+                    <div class="row collapes-image">
+                    	<div class="col-lg-4">
+                    		<h2 class="text-two">Step 1</h2>
+                    		<div><img src="images/enterprise.jpg"/></div><br/>
+                    		<div class="text-above-image-one">World Development Report 2015: Mind, Society, and Behavior</div>
+                    	</div>
+                    	
+                    	<div class="col-lg-4">
+                    		<h2 class="text-two">Step 2</h2>
+                    		<div><img src="images/apdptive.jpg"/></div><br/>
+                    		<div class="text-above-image-two">World Development Report 2015: Mind, Society, and Behavior</div>
+                    	</div>
+
+                    	<div class="col-lg-4">
+                    		<h2 class="text-two">Step 3</h2>
+                    		<div><img src="images/costa.jpg"/></div><br/>
+                    		<div class="text-above-image-three">World Development Report 2015: Mind, Society, and Behavior</div>
+                    	</div>
+                    </div>
+                
+                <div><button class="btn btn-info create-project ">List your Project Now</button></div><br/>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">Want to Volunteer?
+                    	<!-- <select class="form-control panel-heading">
+						  <option>Want to Volunteer?</option>
+						</select> -->
+                    	</a>
+
+
+                </h4>
+            </div>
+            <div id="collapseThree" class="panel-collapse collapse">
+                <div class="panel-body">
+                    <p></p>
+
+                          <div class="list-group"> &nbsp
+						    <a href="#" class="list-group-item active">
+						         <span class="badge">1</span>&nbsp;&nbsp; Read our Guide to #doGoodbetter
+						    </a>
+						    <a href="#" class="list-group-item">
+						        <span class="badge">2</span> &nbsp;&nbsp;Adopt an existing project and help sustain it
+						    </a>
+						    <a href="#" class="list-group-item">
+						      <span class="badge">3</span> &nbsp;&nbsp; Prevent wastage by checking on past project' files for your beneficaiaries' commuity 
+						    </a>
+						    <a href="#" class="list-group-item">
+						        <span class="badge">4</span> &nbsp;&nbsp; List your project on CPS so future teams can build on your legacy
+						    </a>
+						    <a href="#" class="list-group-item">
+						        <span class="badge">5</span> &nbsp;&nbsp;Review your trip and report potential abuses/risk on CPS warn future volunteers 
+						    </a>
+						</div>
+						<div><button class="btn btn-info create-project ">Create your Project Now</button></div>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseFour">Project Library?</a>
+                </h4>
+            </div>
+            <div id="collapseFour" class="panel-collapse collapse">
+                <div class="panel-body">
+                    <p></p>
+
+                     <ul class="bxslider-four">
+					  <li><img src="images/img_kare.jpg" width="150" height="150"/></li>
+					 	<li><img src="images/img_kare.jpg" width="150" height="150"/></li>
+					 	<li><img src="images/img_kare.jpg" width="150" height="150"/></li>
+					 	<li><img src="images/img_kare.jpg" width="150" height="150"/></li>
+					 	<li><img src="images/img_kare.jpg" width="150" height="150"/></li>
+					 	<li><img src="images/img_kare.jpg" width="150" height="150"/></li>
+					 	<li><img src="images/img_kare.jpg" width="150" height="150"/></li>
+					   
+					</ul>
+                </div>
+
+            </div>
+        </div>
+
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseSix">Help make Volunteerism better</a>
+                </h4>
+            </div>
+
+            <div id="collapseSix" class="panel-collapse collapse">
+                <div class="-body">
+                	<p>HTML stands for HyperText Markup Language. HTML is the main markup language for describing the structure of Web pagesHTML stands for HyperText Markup Language. HTML is the main markup language for describing the structure of Web pages.</p><br/>
+
+                     <!-- three -->
+				<ul class="bxslider-five">
+				  <li><img src="images/img-002.jpg" width="349" height="300"/></li>
+				  <li><img src="images/img-004.jpg" width="349" height="300"/></li>
+				  <li><img src="images/img-002.jpg" width="349" height="300"/></li>
+				  <li><img src="images/img-004.jpg" width="349" height="300"/></li>
+				   <li><img src="images/img-004.jpg" width="349" height="300"/></li>
+				  <li><img src="images/img-002.jpg" width="349" height="300"/></li>
+				  <li><img src="images/img-004.jpg" width="349" height="300"/></li>  
+				</ul>
+				<div><button class="btn btn-info create-project ">Create your Project Now</button></div>
+<!--End -->
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div>
+</div>
+</div>
+</br>
+<div id="updateboxarea" data-step="1" data-intro="You can upload status.">
+<b id="what">What's up <?php echo $Wall->UserFullName($session_username).'?';?></b><br>
+<textarea name="update" id="update"  ></textarea>
+<br />
+<?php echo "Hello world33";?>
+<div id="webcam_container" class='border'>
+<div id="webcam" >
+</div>
+<div id="webcam_preview">
+<?php echo "Hello world11";?>
+</div>
+
+<?php echo "Hello world22";?>
+
+<div id='webcam_status'></div>
+<div id='webcam_takesnap'>
+
+<input type="button" value=" Take Snap " onclick="return takeSnap();" class="camclick  wallbutton"/>
+<input type="hidden" id="webcam_count" />
+</div>
+</div>
+<div  id="imageupload" class="border">
+<form id="imageform" method="post" enctype="multipart/form-data" action='<?php echo $base_url; ?>message_image_ajax.php'>
+<div id='preview'>
+</div>
+<div id='imageloadstatus'>
+<img src='<?php echo $base_url;?>wall_icons/ajaxloader.gif'/> Uploading please wait ....
+</div>
+<div id='imageloadbutton'>
+<span id='addphoto'>Add Photo:</span> <input type="file" name="photos[]" id="photoimg" multiple="true"/>
+</div>
+<input type='hidden' id='uploadvalues' />
+<input type='hidden' id='group_id' value="<?php echo $groupID; ?>" name="group_id"/>
+</form>
+</div>
+<div id="updateIcon">
+<span class="floatRight">
+<input type="submit"  value=" Update "  id="update_button"  class="update_button wallbutton update_box"/>
+</span>
+<a href="javascript:void(0);" id="camera" title="Upload Image"></a>
+<!--<a href="javascript:void(0);" id="webcam_button" title="Webcam Snap"></a>-->
+</div>
+
+</div>
+
+<div id='flashmessage'>
+<div id="flash" align="left"  ></div>
+</div>
+
+<script type="text/javascript">
+	$('.slider-text').bxSlider({
+  minSlides: 1,
+  maxSlides: 1,
+  slideWidth: 800,
+  slideHeight: 60,
+  slideMargin: 10
+});
+</script>
+<script type="text/javascript">
+  $('.bxslider-four').bxSlider({
+  minSlides: 4,
+  maxSlides: 5,
+  slideWidth: 200,
+  slideHeight: 60,
+  slideMargin: 10
+});
+
+</script>
+<script type="text/javascript">
+  $('.bxslider-five').bxSlider({
+  minSlides: 3,
+  maxSlides: 4,
+  slideWidth: 200,
+  slideHeight: 60,
+  slideMargin: 10
+});
+
+</script>

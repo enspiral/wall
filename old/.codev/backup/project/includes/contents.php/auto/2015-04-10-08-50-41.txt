@@ -1,0 +1,318 @@
+<!-- Popup window -->
+<?php 
+    include 'popup_new_social_needs.php'; 
+    include 'popup_new_program_or_plan.php';
+    include 'popup_new_outcomes.php';
+    include 'popup_social_need.php';
+    include 'popup_program.php';
+    include 'popup_outcome.php';
+?>
+
+<style>
+    .des{
+        border-width: 1px; border-style: solid; border-color: blue; margin-bottom:10px;
+    }
+    
+    div.text{
+        min-height: 1000px;
+    }
+</style>
+
+<div class="row contents">
+    
+    
+    
+   <div class="col-lg-2">
+       <a id="prev" onclick="showPreviousItem();"><img src='<?php echo $base_url."/wall_icons/prevarrow.png"; ?>' align="center" width="90" height="90" border="0"></a>
+   </div>
+    <div class="col-lg-8 divs">
+        <div class="text">
+            <p class="text-title"><b>Social Needs</b>
+             <?php if($group_owner_id==$uid){?>
+            <span class="text-right"><a href="" onclick="popup_window_show('#popup_window_scoial_need', { pos : 'window-left-top', parent : this, x : 50, y : 100, width : '400px'}); return false;"><i class="glyphicon glyphicon-edit"></i></a></span>
+            <?php } ?>
+            </p>
+            <div class="des">        
+                <p class="text-primary text-see-all"><a onclick="$('#social-need-to-minimize').toggle();">maximize/minimize <i class="glyphicon glyphicon-minus-sign text-primary"></i></a></p>
+                <p><img src='<?php echo $base_url."/images/social-need-icon.png"; ?>' align="left" width="90" height="90" border="0"><br>
+                    <?php if(strlen($social_need)>0){ echo $social_need;} else{ echo "No Info!"; } ?></p><br>
+            </div>
+            <!-- Social Needs -->
+            <div id="social-need-to-minimize">
+             <?php
+                $count = 1;
+                if($proj_social_needs)
+                { 
+                    foreach($proj_social_needs as $f)
+                    { 
+                       ?>
+               
+                        <div class="media minimize">
+                            <div class="media-left media-middle">
+                                <a href="#">
+                                  <img class="media-object" src="<?php echo $base_url; ?>uploads/bggroup_141424753351.jpg">
+                                </a>
+                              </div>
+                            <?php 
+                             $sn_id=$f['sn_id'];
+                             $sn_title=$f['sn_title'];
+                             $sn_content = $f['sn_content'];  
+                             $sn_keywords = $f['sn_keywords'];
+                             ?>
+                            <div class="media-body">
+                                <h4 class="media-heading"><?php echo $sn_title; ?></h4>
+                                <p><?php echo $sn_content; ?>
+                                </p>
+                                <p>Keywords : <?php echo $sn_keywords; ?></p>
+                            </div>
+                            <!--input type="hidden" name="social_id" value="<?php //echo $sn_id; ?>"-->
+                            <?php if($group_owner_id==$uid){ ?>
+                          
+                              
+                                <button id="<?php echo $sn_id; ?>" class="btn btn-edit" onclick="editSocialNeed(id)">Edit</button>
+                                <button id="<?php echo $sn_id; ?>" class="btn btn-edit" onclick="deleteSocialNeed(id)">Delete</button>
+                              
+                                <?php } ?>
+                        </div>
+                    
+                <?php    if($count++ == 5) break;}
+                }else{
+                    echo "No Social Need Update!";
+                } ?>
+            </div>
+        
+           <?php if($group_owner_id==$uid){ ?>
+            <button class="btn btn-primary btn-xs btn-add-new" onclick="popup_window_show('#popup_window_new_social_need',  { pos : 'window-left-top', parent : this, x : 50, y : 100, width : '400px' }); return false;">Add new</button>
+           <?php } ?>
+        </div>
+        
+        <!-- Program/Plan -->
+         
+        <div class="text"  style="display:none;">
+             <p class="text-title"><b>Program/Plan</b>
+              <?php if($group_owner_id==$uid){?>
+            <span class="text-right"><a href="" onclick="popup_window_show('#popup_window_program', { pos : 'window-left-top', parent : this, x : 50, y : 100, width : '400px'}); return false;"><i class="glyphicon glyphicon-edit"></i></a></span>
+            <?php } ?>
+             </p>
+            <div class="des">
+               
+                <p class="text-primary text-see-all"><a onclick="$('#prog-plan-to-minimize').toggle();">maximize/minimize <i class="glyphicon glyphicon-minus-sign text-primary"></i></a></p>
+                <p><img src='<?php echo $base_url."/images/program-icon.png"; ?>' align="left" width="90" height="90" border="0"><br>
+                    <?php if(strlen($program)>0){ echo $program;} else{ echo "No Info!"; } ?></p><br>
+            </div>
+            <div id="prog-plan-to-minimize">
+             <?php
+             $count = 1;
+                if($proj_program)
+                {
+                    foreach($proj_program as $pp)
+                    { ?>
+                        <div class="media minimize">
+                            <div class="media-left media-middle">
+                                <a href="#">
+                                  <img class="media-object" src="<?php echo $base_url; ?>uploads/bggroup_141424753351.jpg">
+                                </a>
+                              </div>
+                            <?php 
+                             $prog_id=$pp['prog_id'];
+                             $prog_title=$pp['prog_title'];
+                             $prog_content = $pp['prog_content']; 
+                             $prog_keywords = $pp['prog_keywords'];
+                             ?>
+                            <div class="media-body">
+                                <h4 class="media-heading"><?php echo $prog_title; ?></h4>
+                                <p><?php echo $prog_content; ?>
+                                </p>
+                                <p>Keywords :<?php echo $prog_keywords; ?></p>
+                            </div>
+                            
+                             <?php if($group_owner_id==$uid){ ?>
+                                <button id="<?php echo $prog_id; ?>" class="btn btn-edit" onclick="editProgram(id)">Edit</button>
+                                <button id="<?php echo $prog_id; ?>" class="btn btn-edit" onclick="deleteProgram(id)">Delete</button>
+                           
+                                <?php } ?>
+                        </div>
+                <?php    if($count++ == 5) break; }
+                }else{
+                    echo "No Program/Plan Update!";
+                } ?>
+            
+              <?php if($group_owner_id==$uid){ ?>
+            <button class="btn btn-primary btn-xs btn-add-new" onclick="popup_window_show('#popup_window_new_program',  { pos : 'window-left-top', parent : this, x : 50, y : 100, width : '400px' }); return false;">Add new</button>
+             <?php } ?>
+        </div>
+             </div>
+        
+        <!-- Outcomes -->
+        <div class="text" style="display:none;">
+            <p class="text-title"><b>Outcomes</b>
+             <?php if($group_owner_id==$uid){?>
+            <span class="text-right"><a href="" onclick="popup_window_show('#popup_window_outcome', { pos : 'window-left-top', parent : this, x : 50, y : 100, width : '400px'}); return false;"><i class="glyphicon glyphicon-edit"></i></a></span>
+            <?php } ?>
+            </p>
+            <div class="des">
+                
+                <p class="text-primary text-see-all"><a onclick="$('#outcome-to-minimize').toggle();">maximize/minimize <i class="glyphicon glyphicon-minus-sign text-primary"></i></a></p>
+                <p><img src='<?php echo $base_url."/images/outcome-icon.png"; ?>' align="left" width="90" height="90" border="0"><br>
+               <?php if(strlen($outcome)>0){ echo $outcome;} else{ echo "No Info!"; } ?></p><br>
+            </div>
+            
+            <div id="outcome-to-minimize">
+             <?php
+             $count = 1;
+                if($proj_outcomes)
+                {
+                    foreach($proj_outcomes as $po)
+                    { ?>
+                        <div class="media minimize">
+                            <div class="media-left media-middle">
+                                <a href="#">
+                                  <img class="media-object" src="<?php echo $base_url; ?>uploads/bggroup_141424753351.jpg">
+                                </a>
+                              </div>
+                            <?php 
+                             $outcome_id=$po['outcome_id'];
+                             $outcome_title=$po['outcome_title'];
+                             $outcome_content = $po['outcome_content'];     
+                             $outcome_keywords = $po['outcome_keywords'];
+                             ?>
+                            <div class="media-body">
+                                <h4 class="media-heading"><?php echo $outcome_title; ?></h4>
+                                <p><?php echo $outcome_content; ?>
+                                </p>
+                                <p>Keywords :<?php echo $outcome_keywords; ?></p>
+                            </div>
+                            
+                              <?php if($group_owner_id==$uid){ ?>
+                          
+                              
+                                <button id="<?php echo $outcome_id; ?>" class="btn btn-edit" onclick="editOutcome(id)">Edit</button>
+                                <button id="<?php echo $prog_id; ?>" class="btn btn-edit" onclick="deleteOutcome(id)">Delete</button>
+                                <!--<button class="btn btn-edit" onclick="return confirm('Are you sure you want to delete this item?');">Delete</button>-->
+                           
+                                <?php } ?>
+                        </div>
+                <?php    if($count++ == 5) break; }
+                }else{
+                    echo "No Outcome Update!";
+                } ?>
+             <?php if($group_owner_id==$uid){ ?>
+            <button class="btn btn-primary btn-xs btn-add-new" onclick="popup_window_show('#popup_window_new_outcome',  { pos : 'window-left-top', parent : this, x : 50, y : 100, width : '400px' }); return false;">Add new</button>
+                 <?php } ?>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-2">
+        <a id="next" onclick="showNextItem();"><img src='<?php echo $base_url."/wall_icons/nextarrow.png"; ?>' align="center" width="90" height="90" border="0"></a>
+    </div>
+</div>
+
+<script>
+    
+
+        function showNextItem(){
+            if ($(".divs div.text:visible").next().length != 0)
+                $(".divs div.text:visible").next().show().prev().hide();
+            else {
+                $(".divs div.text:visible").hide();
+                $(".divs div.text:first").show();
+                }
+        }
+            
+        function showPreviousItem(){
+            if ($(".divs div.text:visible").prev().length != 0)
+                $(".divs div.text:visible").prev().show().next().hide();
+            else {
+                $(".divs div.text:visible").hide();
+                $(".divs div.text:last").show();
+            }
+        }
+        
+        function editSocialNeed(id){
+            location.href='<?php echo $base_url."edit_page.php?sn_id="; ?>'+id;
+        }
+
+        function editProgram(id){
+            location.href='<?php echo $base_url."edit_page.php?prog_id="; ?>'+id;
+        }
+        
+        function editOutcome(id){
+            location.href='<?php echo $base_url."edit_page.php?outcome_id="; ?>'+id;
+        }
+        
+        function deleteSocialNeed(id)
+        {
+            var ID = id;
+            var dataString = 'sn_id='+ ID;
+            var URL=$.base_url+'social_need_delete_ajax.php';
+            jConfirm("Sure you want to delete this social need? There is NO undo!", '',
+            function(r)
+            {
+            if(r==true)
+            {
+            $.ajax({
+                type: "POST",
+                url: URL,
+                data: dataString,
+                cache: false,
+            //    beforeSend: function(){$("#stcommentbody"+ID).animate({'backgroundColor':'#fb6c6c'},300);},
+                success: function(html){
+                    location.href=$.base_url+'group.php?gid=<?php echo $groupID;?>'+'&ptab=contents';
+            //    $("#stcommentbody"+ID).fadeOut(300,function(){$("#stcommentbody"+ID).remove();});
+                }
+                });
+                } });
+                return false;
+        }
+        
+         function deleteProgram(id)
+        {
+            var ID = id;
+            var dataString = 'prog_id='+ ID;
+            var URL=$.base_url+'program_delete_ajax.php';
+            jConfirm("Sure you want to delete this Program/Plan? There is NO undo!", '',
+            function(r)
+            {
+            if(r==true)
+            {
+            $.ajax({
+                type: "POST",
+                url: URL,
+                data: dataString,
+                cache: false,
+            //    beforeSend: function(){$("#stcommentbody"+ID).animate({'backgroundColor':'#fb6c6c'},300);},
+                success: function(html){
+                    location.href=$.base_url+'group.php?gid=<?php echo $groupID;?>'+'&ptab=contents';
+            //    $("#stcommentbody"+ID).fadeOut(300,function(){$("#stcommentbody"+ID).remove();});
+                }
+                });
+                } });
+                return false;
+        }
+        
+         function deleteOutcome(id)
+        {
+            var ID = id;
+            var dataString = 'outcome_id='+ ID;
+            var URL=$.base_url+'outcome_delete_ajax.php';
+            jConfirm("Sure you want to delete this Outcome? There is NO undo!", '',
+            function(r)
+            {
+            if(r==true)
+            {
+            $.ajax({
+                type: "POST",
+                url: URL,
+                data: dataString,
+                cache: false,
+            //    beforeSend: function(){$("#stcommentbody"+ID).animate({'backgroundColor':'#fb6c6c'},300);},
+                success: function(html){
+                    location.href=$.base_url+'group.php?gid=<?php echo $groupID;?>'+'&ptab=contents';
+            //    $("#stcommentbody"+ID).fadeOut(300,function(){$("#stcommentbody"+ID).remove();});
+                }
+                });
+                } });
+                return false;
+        }
+        
+</script>

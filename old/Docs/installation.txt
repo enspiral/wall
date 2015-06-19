@@ -1,0 +1,7 @@
+Wall Script Installation
+
+1)Extract wall.zip file into htdocs or www folder.
+2)Open phpmyadmin(http://localhost/phpmyadmin) create database called 'wall'.
+3)Import wall.sql into 'wall' database.
+4)Now excute http://localhost/wall/
+5)More info http://www.9lessons.info/2011/05/facebook-wall-script-with-php-and.html

@@ -1,0 +1,100 @@
+<?php
+include_once 'includes.php';
+include_once 'oauth_redirection.php';
+$validation ="";
+$condition_name="(group_name LIKE '";
+$condition_location="(location LIKE '";
+
+if(isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST")
+{
+    if(!empty($_POST['search_name'])){
+        $condition_name .= "%".$_POST['search_name']."%";
+    }
+    $condition_name .= "') ";
+     if(!empty($_POST['search_location'])){
+        $condition_location .= "%".$_POST['search_location']."%";
+    }
+    $condition_location .= "') ";
+    if(!empty($_POST['area_focus'])) {
+       $i=0;
+        foreach($_POST['area_focus'] as $check) {
+             if($i==0){          
+             $validation .= "'%".$check."%'";
+             $i++;
+             }else{
+                 $validation .= " OR '%".$check."%'";
+             }
+        }
+    }else{
+        $validation = "''";
+    }
+    
+    $data_discover = $Wall->Discover_Project($validation);
+    function connect() {
+        return new PDO('mysql:host=localhost;dbname=codinga3_cpswall', 'codinga3_cpswall', '$M{HZCUbw&S_', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION, PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
+    }
+
+    $pdo = connect();
+    // Query for Project
+    $sql = "select * from ( select G.group_id, G.group_name,  G.group_pic, P.start_date, P.end_date, P.proj_intro, P.location, ( ";
+    $sql .= "SELECT GROUP_CONCAT(NULLIF(sn_keywords, '') SEPARATOR ',') AS all_tags FROM proj_social_needs ";
+    $sql .= "WHERE sn_pid = G.group_id) as keywords from groups G INNER JOIN projects P where G.group_id = P.group_id) discover ";
+    $sql .= "where ".$condition_name. " OR ".$condition_location. " OR keywords LIKE ".$validation;
+    $query = $pdo->prepare($sql);
+    $query->execute();
+    $data_discover = $query->fetchAll();
+    
+    
+    
+    // Query for Social Needs
+    $sql2 = "select * from (select G.group_id, G.group_name, G.group_pic, SN.sn_title, SN.sn_content, SN.sn_keywords, ( ";
+    $sql2 .= "SELECT GROUP_CONCAT(NULLIF(sn_keywords, '') SEPARATOR ',') AS all_tags FROM proj_social_needs ";
+    $sql2 .= "WHERE sn_pid = G.group_id) as keywords from groups G INNER JOIN proj_social_needs SN where G.group_id = SN.sn_pid) discover2 ";
+    $sql2 .= "where group_name LIKE '%" .$_POST['search_name']. "%' OR sn_keywords LIKE ".$validation;
+    $query = $pdo->prepare($sql2);
+    $query->execute();
+    $data_discover2 = $query->fetchAll();
+    
+    
+    
+    $data_name = $_POST['search_name'];
+    $data_locaiton = $_POST['search_location'];
+    if($data_name!=''){
+        $data_name = '%'.$data_name.'%';
+    }
+    
+    if($data_locaiton!=''){
+        $data_locaiton = '%'.$data_locaiton.'%';
+    }
+    
+    $data_community     = mysqli_query($db, "SELECT groups.*,community.*  FROM groups inner join community ON groups.group_id = community.group_id WHERE group_name LIKE '$data_name' OR community.location LIKE '$data_locaiton'");
+    $data_socailneed    = mysqli_query($db, "SELECT proj_social_needs.*, groups.group_name, groups.group_pic, projects.* FROM proj_social_needs INNER JOIN projects ON proj_social_needs.sn_pid = projects.proj_id INNER JOIN groups ON projects.group_id = groups.group_id INNER JOIN community ON projects.com_id = community.com_id WHERE sn_title LIKE '$data_name' OR sn_keywords LIKE '$data_name' OR community.location LIKE '$data_locaiton'");
+    $data_project       = mysqli_query($db, "SELECT projects.proj_intro,projects.group_id,projects.start_date,projects.end_date,groups.group_pic,groups.group_name FROM projects INNER JOIN groups ON projects.group_id = groups.group_id INNER JOIN community ON projects.com_id = community.com_id  WHERE groups.group_name LIKE '$data_name' OR community.location LIKE '$data_locaiton'");
+
+}
+
+
+?>
+<!DOCTYPE html>
+<html lang='en'>
+    <head>
+        <meta charset="utf-8">
+        <?php
+        include_once 'project_title.php';
+        include_once 'js.php';
+        ?>
+    </head>
+    <body>
+        <div class="wrapper">
+            <div class="container">
+                <?php include_once 'header.php'; ?>
+                <div class="div-content">
+                    <?php
+                        include("my_discover.php");
+                    ?>
+                </div>
+                <?php include_once 'block_footer.php'; ?>
+            </div>
+        </div>
+    </body>
+</html>
