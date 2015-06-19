@@ -1860,3 +1860,6 @@ button a {
 .consol_arrow{
     margin-top: -55px;
 }
+.content-date{
+  width: 640px !important;
+}
